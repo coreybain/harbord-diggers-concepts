@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mounties Group — Design concepts</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+:root{--ink:#16171b;--paper:#f6f3ee;--line:rgba(22,23,27,.13);--muted:rgba(22,23,27,.62);--display:Newsreader,Georgia,serif}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif}
+.page{max-width:1500px;margin-inline:auto;padding:clamp(28px,5vw,72px) clamp(20px,5vw,72px) 80px}
+.kicker{font:600 11px/1 Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+h1{font:300 clamp(40px,6.4vw,104px)/1.02 var(--display);letter-spacing:-.025em;margin-top:22px;max-width:14ch}
+h1 em{font-style:italic}
+.lede{max-width:56ch;color:var(--muted);margin-top:24px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,32px);margin-top:clamp(24px,3vw,40px)}
+.group{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 24px;margin-top:clamp(48px,7vw,104px);padding-bottom:16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.group__t{font:400 clamp(28px,3vw,44px)/1.1 var(--display);letter-spacing:-.02em;color:var(--ink)}
+.group__t em{font:600 11px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;vertical-align:middle;margin-left:10px;padding:6px 10px;border-radius:999px;background:#ffd200}
+.c{display:block}
+.c__img{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;background:#ddd;box-shadow:0 30px 60px -40px rgba(22,23,27,.55);transition:transform .8s var(--ease),box-shadow .8s var(--ease)}
+.c__img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.c.in:hover .c__img{transform:translateY(-8px);box-shadow:0 44px 70px -40px rgba(22,23,27,.6)}
+.c.in:hover .c__img img{transform:scale(1.04)}
+.c__row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:22px;padding-bottom:14px;border-bottom:1px solid var(--line);position:relative}
+.c__row::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.c:hover .c__row::after{transform:scaleX(1)}
+.c h2{font:400 clamp(26px,2.4vw,36px)/1.1 var(--display);letter-spacing:-.02em}
+.c__n{font:500 12px/1 Inter,sans-serif;letter-spacing:.14em;color:var(--muted)}
+.c p{color:var(--muted);font-size:14.5px;margin-top:14px;max-width:44ch}
+.c ul{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.c li{font:500 11.5px/1 Inter,sans-serif;padding:7px 11px;border-radius:999px;border:1px solid var(--line)}
+.c__go{display:inline-flex;gap:8px;margin-top:20px;font-weight:600;font-size:14px}
+.c__go span{transition:transform .5s var(--ease)}
+.c:hover .c__go span{transform:translateX(6px)}
+.note{margin-top:clamp(48px,6vw,88px);padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 40px;font-size:13px;color:var(--muted)}
+.note a{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="page">
+  <p class="kicker reveal">Mounties Group · Harbord Diggers &amp; Mounties</p>
+  <h1 data-split="load">Ten concepts, <em>two clubs.</em></h1>
+  <p class="lede reveal" style="--d:3">Two Christmas advent calendar pages for Harbord Diggers, plus three homepage concepts for each club. Each one uses the club's own photography and explores a different header banner, motion style and mood. Open one, scroll through, and switch between them with the control at the bottom of each page.</p>
+
+  <div class="group reveal" id="christmas-brand"><h2 class="group__t">Christmas, in the brand style guide <em>New</em></h2><span>Concepts 09 – 10 · Harbord palette and Montserrat, events hidden until you open them</span></div>
+  <div class="grid">
+    <a class="c" href="v9/">
+      <div class="c__img wipe"><img src="assets/thumbs/v9.jpg" alt="Concept 9 preview"></div>
+      <div class="c__row reveal"><h2>Light the Tree</h2><span class="c__n">09</span></div>
+      <p class="reveal">A Christmas tree with seven numbered baubles and a koala in a Santa hat peeking round the side. Tap a bauble to unwrap its event, and each one you open switches on another string of lights.</p>
+      <ul class="reveal"><li>Hidden events</li><li>Tree lights up</li><li>Gold light strings</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v10/">
+      <div class="c__img wipe" style="--d:1"><img src="assets/thumbs/v10.jpg" alt="Concept 10 preview"></div>
+      <div class="c__row reveal"><h2>The Freshwater Advent</h2><span class="c__n">10</span></div>
+      <p class="reveal">A classic picture advent calendar. Seven shuttered doors hang over a Freshwater beach scene with Christmas lights, a decorated pine and a koala asleep on a gum branch until the last door opens.</p>
+      <ul class="reveal"><li>Shutters swing open</li><li>Animated sea</li><li>Clues on hover</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+  </div>
+
+  <div class="group reveal" id="christmas"><h2 class="group__t">Christmas at Harbord Diggers</h2><span>Concepts 07 – 08 · Advent calendar page, seven December events</span></div>
+  <div class="grid">
+    <a class="c" href="v7/">
+      <div class="c__img wipe"><img src="assets/thumbs/v7.jpg" alt="Concept 7 preview"></div>
+      <div class="c__row reveal"><h2>Christmas Bush</h2><span class="c__n">07</span></div>
+      <p class="reveal">Cream, eucalypt green and Christmas-bush red. Festoon lights string themselves across the banner, wattle drifts down, and seven calendar doors swing open to show each event.</p>
+      <ul class="reveal"><li>Doors that swing open</li><li>Festoon lights</li><li>Live countdown</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v8/">
+      <div class="c__img wipe" style="--d:1"><img src="assets/thumbs/v8.jpg" alt="Concept 8 preview"></div>
+      <div class="c__row reveal"><h2>Unwrapped</h2><span class="c__n">08</span></div>
+      <p class="reveal">Sunny, coastal and the more playful of the two. A rising sun behind the headline, photo baubles swinging on a string, and events that unwrap themselves as you scroll.</p>
+      <ul class="reveal"><li>Unwraps on scroll</li><li>Swinging baubles</li><li>Build "My December"</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+  </div>
+
+  <div class="group reveal" id="harbord"><h2 class="group__t">Harbord Diggers homepage</h2><span>Concepts 01 – 03 · harborddiggers.com.au</span></div>
+  <div class="grid">
+    <a class="c" href="v1/">
+      <div class="c__img wipe"><img src="assets/thumbs/v1.jpg" alt="Concept 1 preview"></div>
+      <div class="c__row reveal"><h2>Shoreline</h2><span class="c__n">01</span></div>
+      <p class="reveal">Warm cream and deep purple, closest to the new landing page example. A framed, slowly drifting photo banner and a header that condenses into a floating pill.</p>
+      <ul class="reveal"><li>Crossfading banner</li><li>Scroll-lit statement</li><li>Drag dining rail</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v2/">
+      <div class="c__img wipe" style="--d:1"><img src="assets/thumbs/v2.jpg" alt="Concept 2 preview"></div>
+      <div class="c__row reveal"><h2>Golden Hour</h2><span class="c__n">02</span></div>
+      <p class="reveal">An evening mood in ink and sand. The full-screen banner settles into a framed picture as you scroll, and the dining list swaps its photo as you move through it.</p>
+      <ul class="reveal"><li>Scroll-framed banner</li><li>Interactive dining list</li><li>Parallax close</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v3/">
+      <div class="c__img wipe" style="--d:2"><img src="assets/thumbs/v3.jpg" alt="Concept 3 preview"></div>
+      <div class="c__row reveal"><h2>Freshwater</h2><span class="c__n">03</span></div>
+      <p class="reveal">Light, coastal and the most playful of the three. A centred-logo header, arched photo windows, a rotating headline word and cards that stack as you scroll.</p>
+      <ul class="reveal"><li>Arched banner</li><li>Rotating headline</li><li>Stacking cards</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+  </div>
+
+  <div class="group reveal" id="mounties"><h2 class="group__t">Mounties</h2><span>Concepts 04 – 06 · mounties.com.au</span></div>
+  <div class="grid">
+    <a class="c" href="v4/">
+      <div class="c__img wipe"><img src="assets/thumbs/v4.jpg" alt="Concept 4 preview"></div>
+      <div class="c__row reveal"><h2>Long Table</h2><span class="c__n">04</span></div>
+      <p class="reveal">Dining-led and warm, in navy, paper and amber. A split banner where the photo wipes from one kitchen to the next, and nav links that roll over on hover.</p>
+      <ul class="reveal"><li>Wiping split banner</li><li>Drifting dining grid</li><li>Rolling nav links</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v5/">
+      <div class="c__img wipe" style="--d:1"><img src="assets/thumbs/v5.jpg" alt="Concept 5 preview"></div>
+      <div class="c__row reveal"><h2>After Dark</h2><span class="c__n">05</span></div>
+      <p class="reveal">The night-out version, dark with Mounties yellow. The banner opens like a stage curtain with a soft spotlight that follows the pointer, and dining travels sideways as you scroll.</p>
+      <ul class="reveal"><li>Curtain + spotlight banner</li><li>Sideways dining scroll</li><li>Sliding word bands</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+    <a class="c" href="v6/">
+      <div class="c__img wipe" style="--d:2"><img src="assets/thumbs/v6.jpg" alt="Concept 6 preview"></div>
+      <div class="c__row reveal"><h2>Open House</h2><span class="c__n">06</span></div>
+      <p class="reveal">Bright, friendly and the most playful. Photo windows set into the headline, a banner that grows to meet you, and dining panels that open as you move across them.</p>
+      <ul class="reveal"><li>Photos in the headline</li><li>Opening dining panels</li><li>Pointer-following photos</li></ul>
+      <span class="c__go reveal">View concept <span>→</span></span>
+    </a>
+  </div>
+
+  <div class="note">
+    <span>Design concepts for discussion — not the live site. Christmas event names, dates and times are placeholders. Photography and copy from <a href="https://www.harborddiggers.com.au/">harborddiggers.com.au</a> and <a href="https://mounties.com.au/">mounties.com.au</a>.</span>
+    <span>Best viewed on desktop; all ten adapt to mobile.</span>
+  </div>
+</main>
+<script src="assets/common.js"></script>
+</body>
+</html>

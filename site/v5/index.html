@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mounties — Concept 5: After Dark</title>
+<meta name="description" content="Homepage concept for Mounties, the community club in Mount Pritchard, South-West Sydney.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="../assets/mo/live-singer.jpg">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+:root{
+  --night:#0c0e1a; --panel:#161825; --text:#f4efe6; --sun:#ffd200; --sand:#edc494; --line:rgba(244,239,230,.14); --muted:rgba(244,239,230,.66);
+  --display:'Bricolage Grotesque',system-ui,sans-serif; --body:Inter,system-ui,sans-serif;
+  --pad:clamp(20px,4.6vw,76px); --r:20px;
+  --menu-bg:var(--panel); --menu-fg:var(--text); --menu-accent:var(--sun);
+}
+body{background:var(--night);color:var(--text);font:400 16px/1.65 var(--body)}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;line-height:1}
+h2{font-size:clamp(38px,5.4vw,88px)}
+.hl{color:var(--sun)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sun)}
+.wrap{padding-inline:var(--pad);max-width:1640px;margin-inline:auto}
+section{padding-block:clamp(72px,10vw,150px)}
+
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 22px;border-radius:999px;border:1px solid var(--line);font:600 13px/1 var(--body);position:relative;overflow:hidden;isolation:isolate;transition:color .45s var(--ease),border-color .45s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--text);border-radius:inherit;transform:scale(0);transition:transform .6s var(--ease)}
+.btn:hover{color:var(--night);border-color:var(--text)}
+.btn:hover::before{transform:scale(1.05)}
+.btn--sun{background:var(--sun);border-color:var(--sun);color:var(--night)}
+.btn--ink{background:var(--night);border-color:var(--night);color:var(--text)}
+.btn--ink:hover{border-color:var(--text)}
+.btn--onsun{border-color:rgba(12,14,26,.3);color:var(--night)}
+.btn--onsun::before{background:var(--night)}
+.btn--onsun:hover{color:var(--text);border-color:var(--night)}
+.arrow{display:inline-block;transition:transform .5s var(--ease)}
+a:hover>.arrow,.btn:hover .arrow{transform:translateX(5px)}
+
+/* Header: notice strip that tucks away, nav held in a glass pill */
+.hd{position:fixed;inset:0 0 auto;z-index:100;transition:transform .6s var(--ease)}
+.hd.is-scrolled{transform:translateY(-36px)}
+.hd__note{height:36px;display:flex;justify-content:center;align-items:center;gap:8px 22px;font-size:12.5px;color:rgba(244,239,230,.8);background:rgba(12,14,26,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);white-space:nowrap;overflow:hidden;padding-inline:16px}
+.hd__note a{color:var(--sun);font-weight:500}
+.hd__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;height:78px;padding-inline:var(--pad)}
+.hd__logo img{height:44px;width:auto}
+.hd__nav{display:flex;gap:2px;padding:5px;border-radius:999px;border:1px solid var(--line);background:rgba(12,14,26,.34);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);font:500 13.5px/1 var(--body);transition:background .5s}
+.hd.is-scrolled .hd__nav{background:rgba(22,24,37,.82)}
+.hd__nav a{padding:11px 17px;border-radius:999px;transition:background .35s,color .35s}
+.hd__nav a:hover{background:var(--text);color:var(--night)}
+.hd__actions{display:flex;justify-content:flex-end;align-items:center;gap:8px}
+.hd__actions .btn{height:42px}
+.menu-open .hd__nav,.menu-open .hd__actions .btn,.menu-open .hd__note{opacity:0;pointer-events:none}
+.burger{display:none}
+
+/* Hero banner: the stage opens like a curtain, and a soft spotlight follows the pointer */
+.hero{position:relative;padding:0;height:100svh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end}
+.hero__img{position:absolute;inset:0;clip-path:inset(0 50%);transition:clip-path 1.7s var(--ease-io)}
+.is-loaded .hero__img{clip-path:inset(0)}
+.hero__img img{position:absolute;left:0;top:-12%;width:100%;height:112%;object-fit:cover;object-position:60% 30%;transform:translate3d(0,calc(var(--sy,0) * .12px),0);scale:1.1;transition:scale 2.6s var(--ease)}
+.is-loaded .hero__img img{scale:1}
+.hero__spot{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 44vmax at var(--mx,64%) var(--my,36%),rgba(12,14,26,0) 0,rgba(12,14,26,.24) 40%,rgba(12,14,26,.8) 100%),linear-gradient(180deg,rgba(12,14,26,.5),rgba(12,14,26,0) 26%,rgba(12,14,26,0) 50%,rgba(12,14,26,.9))}
+.hero__in{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;padding:0 var(--pad) clamp(64px,9vh,96px)}
+.hero h1{font-size:clamp(42px,5.7vw,100px);max-width:15ch;margin-top:22px;--base:700ms}
+.hero .eyebrow{color:var(--text);opacity:0;transition:opacity 1s .6s}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.hero__cta,.now{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease) 1.5s,transform 1s var(--ease) 1.5s}
+.is-loaded .hero .eyebrow,.is-loaded .hero__cta,.is-loaded .now{opacity:1;transform:none}
+/* small "what's on" card that flips through three things */
+.now{width:300px;padding:10px;border-radius:var(--r);border:1px solid var(--line);background:rgba(12,14,26,.5);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition-delay:1.7s}
+.now__stage{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden}
+.now__s{position:absolute;inset:0;opacity:0;transition:opacity 1.2s var(--ease-io)}
+.now__s.is-active{opacity:1}
+.now__s img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 6s linear}
+.now__s.is-active img{transform:none}
+.now__s span{position:absolute;left:12px;bottom:10px;font:500 20px/1 var(--display);letter-spacing:-.02em;text-shadow:0 1px 14px rgba(0,0,0,.6)}
+.now__s::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,26,0) 40%,rgba(12,14,26,.7))}
+.now__s span{z-index:2}
+.now__row{display:flex;justify-content:space-between;align-items:center;padding:10px 4px 2px;font-size:13px}
+.now__dots{display:flex;gap:6px}
+.now__dots button{width:22px;height:4px;border-radius:4px;background:rgba(244,239,230,.25);position:relative;overflow:hidden}
+.now__dots button::after{content:"";position:absolute;inset:0;background:var(--sun);transform:scaleX(0);transform-origin:left}
+.now__dots button.is-active::after{animation:fill var(--interval,5s) linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* Words that slide past each other as you scroll */
+.mq{padding:clamp(40px,5vw,72px) 0;overflow:hidden;border-bottom:1px solid var(--line)}
+.mq__row{display:flex;gap:.5em;white-space:nowrap;width:max-content;font:500 clamp(48px,8.6vw,150px)/1.05 var(--display);letter-spacing:-.04em;transform:translate3d(calc(var(--sy,0) * -.32px),0,0)}
+.mq__row:last-child{transform:translate3d(calc(-42% + var(--sy,0) * .32px),0,0)}
+.mq__row span:nth-child(even){color:transparent;-webkit-text-stroke:1px rgba(244,239,230,.55)}
+.mq__row i{font-style:normal;color:var(--sun)}
+
+/* Intro */
+.intro .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(24px,5vw,90px);align-items:start}
+.intro p.big{font:400 clamp(24px,3.1vw,48px)/1.2 var(--display);letter-spacing:-.025em}
+.intro .sw{opacity:.22;transition:opacity .5s}
+.intro [data-words]{--p:0}
+.intro__links{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+
+/* Dining: scroll down, the kitchens travel sideways */
+.pan{padding:0;height:330vh;position:relative}
+.pan__sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.4vh,40px);padding-top:56px}
+.pan__head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-inline:var(--pad)}
+.pan__head h2{font-size:clamp(34px,4.6vw,72px);margin-top:16px}
+.pan__head p{color:var(--muted);max-width:34ch;text-align:right}
+.pan__head p a{color:var(--sun)}
+.pan__track{display:flex;gap:clamp(14px,1.6vw,26px);width:max-content;padding-inline:var(--pad);transform:translate3d(calc(var(--p,0) * (100vw - 100%)),0,0);will-change:transform}
+.pc{position:relative;flex:none;width:clamp(270px,27vw,430px);height:min(56vh,560px);border-radius:var(--r);overflow:hidden;background:var(--panel);display:block}
+.pc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.pc:hover img{transform:scale(1.06)}
+.pc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,26,.3),rgba(12,14,26,0) 30%,rgba(12,14,26,0) 46%,rgba(12,14,26,.88))}
+.pc__n{position:absolute;z-index:2;left:20px;top:18px;font:500 12px/1 var(--body);letter-spacing:.14em}
+.pc__t{position:absolute;z-index:2;left:20px;right:20px;bottom:20px}
+.pc__t b{display:block;font:500 clamp(24px,2.3vw,36px)/1.05 var(--display);letter-spacing:-.03em}
+.pc__t small{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:rgba(244,239,230,.8);margin-top:8px}
+.pc__t .arrow{color:var(--sun)}
+.pc--end{display:flex;flex-direction:column;justify-content:space-between;padding:26px;background:var(--sun);color:var(--night)}
+.pc--end::after{display:none}
+.pc--end b{font:500 clamp(28px,2.8vw,44px)/1.02 var(--display);letter-spacing:-.035em}
+.pc--end span{font-size:14.5px}
+.pan__bar{margin-inline:var(--pad);height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.pan__bar i{display:block;height:100%;background:var(--sun);transform-origin:left;transform:scaleX(var(--p,0))}
+
+/* What's on */
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px 48px;flex-wrap:wrap;margin-bottom:clamp(32px,4.4vw,60px)}
+.sec-head h2{margin-top:18px;max-width:13ch}
+.sec-head p{max-width:36ch;color:var(--muted)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(210px,24vw,360px);gap:clamp(10px,1.2vw,18px)}
+.bt{position:relative;border-radius:var(--r);overflow:hidden;background:var(--panel);display:block}
+.bt--a{grid-column:span 2;grid-row:span 2}
+.bt--d{grid-column:span 2}
+.bt img{width:100%;height:100%;object-fit:cover}
+.bt:hover .bt__m.in>img{transform:scale(1.06)}
+.bt__m{position:absolute;inset:0}
+.bt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,26,0) 42%,rgba(12,14,26,.86));pointer-events:none}
+.bt__t{position:absolute;z-index:2;left:22px;right:22px;bottom:20px;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.bt__t small{display:block;font:600 10.5px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--sun);margin-bottom:8px}
+.bt__t b{display:block;font:500 clamp(22px,2.2vw,38px)/1.05 var(--display);letter-spacing:-.03em}
+.bt--a .bt__t b{font-size:clamp(30px,3.6vw,60px)}
+.bt__go{flex:none;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--night);display:grid;place-items:center;transform:scale(0) rotate(-90deg);transition:transform .6s var(--ease)}
+.bt:hover .bt__go{transform:none}
+
+/* Membership */
+.mem{padding-block:0}
+.mem__card{background:var(--sun);color:var(--night);border-radius:calc(var(--r) + 8px);padding:clamp(28px,5vw,80px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,90px)}
+.mem .eyebrow{color:rgba(12,14,26,.7)}
+.mem .eyebrow::before{background:var(--night)}
+.mem h2{margin-top:20px;font-size:clamp(36px,4.8vw,78px)}
+.mem__lede{margin-top:22px;max-width:42ch;font-size:17px}
+.mem__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.stats{display:flex;gap:clamp(24px,4vw,60px);margin-top:clamp(36px,5vw,64px)}
+.stat b{display:block;font:500 clamp(60px,7vw,116px)/.9 var(--display);letter-spacing:-.05em}
+.stat>span{display:block;font-size:13.5px;margin-top:10px;max-width:17ch;opacity:.8}
+.perks li{display:flex;gap:16px;align-items:baseline;padding:18px 0;border-top:1px solid rgba(12,14,26,.2);font:500 clamp(18px,1.7vw,24px)/1.25 var(--display);letter-spacing:-.02em}
+.perks li:last-child{border-bottom:1px solid rgba(12,14,26,.2)}
+.perks li::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--night);transform:scale(0);transition:transform .7s var(--ease);transition-delay:calc(var(--d,0) * 90ms + 250ms)}
+.perks li.in::before{transform:none}
+.perks small{display:block;font:400 14px/1.5 var(--body);letter-spacing:0;opacity:.78;margin-top:5px}
+
+/* Resort banner */
+.stay__card{position:relative;display:flex;align-items:flex-end;min-height:min(72vh,620px);border-radius:calc(var(--r) + 8px);overflow:hidden;background:var(--panel)}
+.stay__card>img{position:absolute;inset:-14% 0;width:100%;height:128%;object-fit:cover;transform:translateY(calc((var(--p,.5) - .5) * 16%))}
+.stay__card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,26,.72),rgba(12,14,26,0) 62%),linear-gradient(180deg,rgba(12,14,26,0) 50%,rgba(12,14,26,.55))}
+.stay__in{position:relative;z-index:2;padding:clamp(24px,4.4vw,64px);max-width:640px}
+.stay h2{margin-top:18px;font-size:clamp(36px,4.8vw,78px)}
+.stay p{margin-top:18px;color:rgba(244,239,230,.86);font-size:17px}
+.stay .btn{margin-top:26px}
+
+/* Footer / visit */
+footer{border-top:1px solid var(--line);padding:clamp(56px,7vw,100px) 0 96px}
+.ft__big{font:500 clamp(34px,6vw,104px)/1 var(--display);letter-spacing:-.04em}
+.ft__big a{color:var(--sun);white-space:nowrap}
+.ft__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-top:clamp(40px,6vw,84px);padding-top:28px;border-top:1px solid var(--line);font-size:14.5px}
+.ft__grid img{height:44px;width:auto}
+.ft__grid h3{font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.ft__grid li{line-height:2}
+.ft__grid a{opacity:.85;transition:color .3s,opacity .3s}
+.ft__grid a:hover{color:var(--sun);opacity:1}
+.ft__note{margin-top:28px;color:var(--muted);font-size:13px}
+
+@media (max-width:1000px){
+  .hd__in{grid-template-columns:1fr auto;transition:background .5s}
+  .hd.is-scrolled .hd__in{background:rgba(12,14,26,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .menu-open .hd__in{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .hd__nav,.hd__actions .btn:not(.btn--sun){display:none}
+  .burger{display:grid}
+  .hero__in{grid-template-columns:1fr}
+  .now{display:none}
+  .intro .wrap{grid-template-columns:1fr}
+  .pan{height:auto;padding-block:clamp(64px,10vw,100px)}
+  .pan__sticky{position:static;height:auto;padding-top:0;overflow:visible}
+  .pan__head{flex-direction:column;align-items:flex-start}
+  .pan__head p{text-align:left}
+  .pan__track{width:auto;transform:none;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;scroll-padding-inline:var(--pad)}
+  .pan__track::-webkit-scrollbar{display:none}
+  .pc{scroll-snap-align:start;width:min(78vw,340px);height:440px}
+  .pan__bar{display:none}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(180px,44vw,300px)}
+  .mem__card{grid-template-columns:1fr}
+  .ft__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .hd__note span{display:none}
+  .hd__in{height:66px}
+  .hd__logo img{height:36px}
+  .hd__actions .btn{height:38px;padding:0 16px}
+  .hero h1{font-size:clamp(40px,11.6vw,56px)}
+  .bt--a{grid-row:span 1}
+  .bt__go{display:none}
+  .mem__card{padding:26px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero__img{clip-path:none}
+  .hero .eyebrow,.hero__cta,.now{opacity:1;transform:none}
+  .mq__row,.mq__row:last-child,.hero__img img,.stay__card>img{transform:none}
+  .intro .sw{opacity:1!important}
+  .pan{height:auto;padding-block:80px}
+  .pan__sticky{position:static;height:auto}
+  .pan__track{width:auto;transform:none;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hd" data-header>
+  <div class="hd__note"><span>254 Humphries Road, Mount Pritchard</span><span>·</span><a href="tel:0298223555">(02) 9822 3555</a><span>·</span><a href="https://mounties.com.au/opening-hours">Opening hours →</a></div>
+  <div class="hd__in">
+    <a class="hd__logo" href="#top" aria-label="Mounties home"><img src="../assets/mo/logo.svg" alt="Mounties" width="294" height="87"></a>
+    <nav class="hd__nav" aria-label="Primary">
+      <a href="#whats-on">What's On</a>
+      <a href="#dining">Dining &amp; Bars</a>
+      <a href="#membership">Membership</a>
+      <a href="#stay">Resorts</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="hd__actions">
+      <a class="btn" href="https://aaw.rxcx.au/azln">Renew</a>
+      <a class="btn btn--sun" href="https://aaw.rxcx.au/c6XS">Join now</a>
+      <button class="burger" data-menu-toggle aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <nav class="menu__links" aria-label="Menu">
+    <a href="#whats-on">What's On</a>
+    <a href="#dining">Dining &amp; Bars</a>
+    <a href="#membership">Membership</a>
+    <a href="#stay">Resorts</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <div class="menu__foot"><span>254 Humphries Road, Mount Pritchard NSW 2170</span><a href="tel:0298223555">(02) 9822 3555</a></div>
+</div>
+
+<main id="top">
+  <section class="hero" data-spot>
+    <div class="hero__img"><img src="../assets/mo/live-singer.jpg" alt="A singer performing on stage at Mounties" fetchpriority="high"></div>
+    <div class="hero__spot"></div>
+    <div class="hero__in">
+      <div>
+        <p class="eyebrow">Mounties · Mount Pritchard</p>
+        <h1 data-split="load">Best live music, entertainment <span class="hl">&amp; events</span> in South-West Sydney.</h1>
+        <div class="hero__cta">
+          <a class="btn btn--sun" href="#whats-on">See what's on <span class="arrow">→</span></a>
+          <a class="btn" href="#dining">Dining &amp; bars</a>
+        </div>
+      </div>
+      <aside class="now" aria-label="What's on">
+        <div class="now__stage" data-slides="now" data-interval="4800">
+          <a class="now__s" data-slide href="https://mounties.com.au/whats-on/live-local"><img src="../assets/mo/live-guitar.jpg" alt=""><span>Live &amp; Local</span></a>
+          <a class="now__s" data-slide href="https://mounties.com.au/what-s-on/live-sport"><img src="../assets/mo/sports-bar.jpg" alt=""><span>Live Sports</span></a>
+          <a class="now__s" data-slide href="https://www.majorfun.com.au/mount-pritchard/explore"><img src="../assets/mo/major-fun.jpg" alt=""><span>Major Fun</span></a>
+        </div>
+        <div class="now__row"><span>What's on</span><span class="now__dots"><button data-slide-tab="now" aria-label="Live &amp; Local"></button><button data-slide-tab="now" aria-label="Live Sports"></button><button data-slide-tab="now" aria-label="Major Fun"></button></span></div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="mq" aria-hidden="true">
+    <div class="mq__row"><span>Live &amp; Local</span><i>✦</i><span>Live Sports</span><i>✦</i><span>Weekly Events</span><i>✦</i><span>Major Fun</span><i>✦</i><span>Live &amp; Local</span><i>✦</i><span>Live Sports</span><i>✦</i><span>Weekly Events</span></div>
+    <div class="mq__row"><span>Jumbo Seafood</span><i>✦</i><span>M Brasserie</span><i>✦</i><span>Bau Truong</span><i>✦</i><span>Fresh Cafe</span><i>✦</i><span>The Sports Bar</span><i>✦</i><span>Terrace Bar</span><i>✦</i><span>Jumbo Seafood</span><i>✦</i><span>M Brasserie</span></div>
+  </div>
+
+  <section class="intro">
+    <div class="wrap">
+      <p class="eyebrow reveal">Welcome to Mounties</p>
+      <div>
+        <p class="big" data-words data-progress="view">Mounties is a community-centred club, using our success to help improve our members' lives and the South-West Sydney community.</p>
+        <div class="intro__links reveal">
+          <a class="btn" href="https://www.mountiesgroup.com.au/profit-for-purpose">Profit For Purpose <span class="arrow">→</span></a>
+          <a class="btn" href="https://mounties.com.au/about/history">Our history</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pan" id="dining" data-progress>
+    <div class="pan__sticky">
+      <div class="pan__head">
+        <div><p class="eyebrow">Dining &amp; Bars</p><h2>Dinner first. <span class="hl">Or after.</span></h2></div>
+        <p>From daily yum cha to live sport and a cold beer. Call to book on <a href="tel:0298223555">(02) 9822 3555</a>.</p>
+      </div>
+      <div class="pan__track">
+        <a class="pc" href="https://mounties.com.au/dining-bars/jumbo-seafood"><img src="../assets/mo/jumbo-spread.jpg" alt="A banquet of dishes at Jumbo Seafood" loading="lazy"><span class="pc__n">01</span><span class="pc__t"><b>Jumbo Seafood</b><small>Chinese restaurant &amp; daily yum cha <span class="arrow">→</span></small></span></a>
+        <a class="pc" href="https://mounties.com.au/dining-bars/mbrasserie"><img src="../assets/mo/brasserie-tall.jpg" alt="Pizza and shared plates at M Brasserie" loading="lazy"><span class="pc__n">02</span><span class="pc__t"><b>M Brasserie</b><small>Casual dining <span class="arrow">→</span></small></span></a>
+        <a class="pc" href="https://mounties.com.au/dining-bars/bau-truong"><img src="../assets/mo/bau-guest.jpg" alt="Friends sharing a meal at Bau Truong" loading="lazy" style="object-position:50% 25%"><span class="pc__n">03</span><span class="pc__t"><b>Bau Truong</b><small>Vietnamese restaurant <span class="arrow">→</span></small></span></a>
+        <a class="pc" href="https://mounties.com.au/dining-bars/the-sports-bar"><img src="../assets/mo/sports-bar.jpg" alt="Screens and booths in The Sports Bar" loading="lazy"><span class="pc__n">04</span><span class="pc__t"><b>The Sports Bar</b><small>Live sport &amp; cold beer <span class="arrow">→</span></small></span></a>
+        <a class="pc" href="https://mounties.com.au/dining-bars/terrace-bar-cafe"><img src="../assets/mo/terrace-shakes.jpg" alt="Milkshakes, cake and coffee at the Terrace Bar &amp; Cafe" loading="lazy"><span class="pc__n">05</span><span class="pc__t"><b>Terrace Bar &amp; Cafe</b><small>Outdoor dining &amp; entertainment <span class="arrow">→</span></small></span></a>
+        <a class="pc" href="https://mounties.com.au/dining-bars/fresh-cafe"><img src="../assets/mo/fresh.jpg" alt="A chicken salad from Fresh Cafe" loading="lazy"><span class="pc__n">06</span><span class="pc__t"><b>Fresh Cafe</b><small>Healthy meals &amp; shakes <span class="arrow">→</span></small></span></a>
+        <a class="pc pc--end" href="tel:0298223555"><span>Book a table</span><b>Call<br>(02) 9822 3555</b><span>Also at Mounties: Murphy's and the Send It! Snack Bar <span class="arrow">→</span></span></a>
+      </div>
+      <div class="pan__bar"><i></i></div>
+    </div>
+  </section>
+
+  <section id="whats-on">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow reveal">What's On</p><h2 data-split>Something on, <span class="hl">all week.</span></h2></div>
+        <p class="reveal">Live music, live sport, weekly events and somewhere for the kids to run wild.</p>
+      </div>
+      <div class="bento">
+        <a class="bt bt--a" href="https://mounties.com.au/whats-on/live-local"><span class="bt__m wipe"><img src="../assets/mo/live-guitar.jpg" alt="A singer with a guitar on stage" loading="lazy" style="object-position:50% 22%"></span><span class="bt__t"><span><small>Entertainment</small><b>Live &amp; Local</b></span><span class="bt__go" aria-hidden="true">→</span></span></a>
+        <a class="bt" href="https://mounties.com.au/what-s-on/live-sport"><span class="bt__m wipe" style="--d:1"><img src="../assets/mo/cheers.jpg" alt="A mate raising two beers" loading="lazy"></span><span class="bt__t"><span><small>The Sports Bar</small><b>Live Sports</b></span><span class="bt__go" aria-hidden="true">→</span></span></a>
+        <a class="bt" href="https://mounties.com.au/whats-on/weekly-activities"><span class="bt__m wipe" style="--d:2"><img src="../assets/mo/mahjong.jpg" alt="A mahjong game in play" loading="lazy"></span><span class="bt__t"><span><small>Entertainment</small><b>Weekly Events</b></span><span class="bt__go" aria-hidden="true">→</span></span></a>
+        <a class="bt bt--d" href="https://www.majorfun.com.au/mount-pritchard/explore"><span class="bt__m wipe" style="--d:1"><img src="../assets/mo/major-fun.jpg" alt="Two kids on a bench with the Major Fun sloth" loading="lazy" style="object-position:50% 30%"></span><span class="bt__t"><span><small>Kids</small><b>Major Fun</b></span><span class="bt__go" aria-hidden="true">→</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mem" id="membership">
+    <div class="wrap">
+      <div class="mem__card">
+        <div>
+          <p class="eyebrow reveal">Become a member</p>
+          <h2 data-split>Join the Mounties Group family.</h2>
+          <p class="mem__lede reveal">Unlock access to our eight venues, Member discounts, special promotions, member services, and discounted holidays. It's our way of saying thank you.</p>
+          <div class="mem__cta reveal" style="--d:1">
+            <a class="btn btn--ink" href="https://aaw.rxcx.au/c6XS">Join now <span class="arrow">→</span></a>
+            <a class="btn btn--onsun" href="https://aaw.rxcx.au/azln">Renew now</a>
+          </div>
+          <div class="stats">
+            <div class="stat reveal"><b><i data-count="8" style="font-style:normal">8</i></b><span>great venues on one membership</span></div>
+            <div class="stat reveal" style="--d:1"><b>$<i data-count="15" style="font-style:normal">15</i></b><span>birthday bonus points</span></div>
+          </div>
+        </div>
+        <ul class="perks">
+          <li class="reveal"><div>Club Rewards<small>Earn Club Reward points on everyday purchases. The more you spend, the greater the reward.</small></div></li>
+          <li class="reveal" style="--d:1"><div>Special member pricing</div></li>
+          <li class="reveal" style="--d:2"><div>The best live shows, promotions and entertainment</div></li>
+          <li class="reveal" style="--d:3"><div>Discounts on holidays in Sussex Inlet</div></li>
+          <li class="reveal" style="--d:4"><div>Access to join our health clubs<small>Mounties Health &amp; Fitness and G Fitness.</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="stay" id="stay">
+    <div class="wrap">
+      <div class="stay__card" data-progress="view">
+        <img src="../assets/mo/sussex.jpg" alt="A quiet beach near Sussex Inlet" loading="lazy">
+        <div class="stay__in">
+          <p class="eyebrow reveal">Mounties Resorts</p>
+          <h2 data-split>Mounties @ Sussex.</h2>
+          <p class="reveal">Family holiday cabins, with discounts for members. Book your holiday on <a href="tel:0298223519">(02) 9822 3519</a>.</p>
+          <a class="btn btn--sun reveal" href="https://mountiesgroup.com.au/resorts/mounties-at-sussex">Explore the resort <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="visit">
+  <div class="wrap">
+    <p class="ft__big reveal">254 Humphries Road,<br>Mount Pritchard. <a href="tel:0298223555">(02) 9822 3555</a></p>
+    <div class="ft__grid">
+      <div><img src="../assets/mo/logo.svg" alt="Mounties" width="294" height="87"></div>
+      <div><h3>Visit</h3><ul>
+        <li><a href="https://mounties.com.au/opening-hours">Opening hours</a></li>
+        <li><a href="https://mounties.com.au/member-services/courtesy-bus">Courtesy bus</a></li>
+        <li><a href="https://mounties.com.au/about/contact-us">Contact us</a></li>
+      </ul></div>
+      <div><h3>More</h3><ul>
+        <li><a href="https://mounties.com.au/member-services/functions">Functions</a></li>
+        <li><a href="https://www.mountieshealthandfitness.com.au/">Health &amp; Fitness</a></li>
+        <li><a href="https://mountiesgroup.com.au/sports-sub-clubs">Sub Clubs</a></li>
+      </ul></div>
+      <div><h3>About</h3><ul>
+        <li><a href="https://mounties.com.au/about/history">History</a></li>
+        <li><a href="https://www.mountiesgroup.com.au/profit-for-purpose">Profit For Purpose</a></li>
+        <li><a href="https://mounties.com.au/about/your-privacy">Privacy</a></li>
+      </ul></div>
+    </div>
+    <p class="ft__note">Homepage concept · not the live site</p>
+  </div>
+</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+// Scroll-lit intro words + pointer spotlight on the banner
+(() => {
+  const para = document.querySelector('.intro [data-words]');
+  if (para) {
+    const words = [...para.querySelectorAll('.sw')];
+    const light = () => {
+      const r = para.getBoundingClientRect();
+      const p = Math.min(Math.max((innerHeight * .88 - r.top) / (innerHeight * .55), 0), 1);
+      words.forEach((w, i) => { w.style.opacity = i / words.length < p ? 1 : ''; });
+    };
+    addEventListener('scroll', light, { passive: true });
+    light();
+  }
+  const hero = document.querySelector('[data-spot]');
+  if (hero && matchMedia('(hover:hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let tx = 64, ty = 36, x = 64, y = 36, raf;
+    const step = () => {
+      x += (tx - x) * .08; y += (ty - y) * .08;
+      hero.style.setProperty('--mx', x.toFixed(2) + '%');
+      hero.style.setProperty('--my', y.toFixed(2) + '%');
+      raf = Math.abs(tx - x) + Math.abs(ty - y) > .05 ? requestAnimationFrame(step) : 0;
+    };
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width * 100; ty = (e.clientY - r.top) / r.height * 100;
+      if (!raf) raf = requestAnimationFrame(step);
+    });
+    hero.addEventListener('pointerleave', () => { tx = 64; ty = 36; if (!raf) raf = requestAnimationFrame(step); });
+  }
+})();
+</script>
+</body>
+</html>

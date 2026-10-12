@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harbord Diggers — Concept 9: Light the Tree</title>
+<meta name="description" content="Christmas advent calendar concept for Harbord Diggers in the Mounties Group brand style: seven hidden December events on a tree of lights.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,500;1,800&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+/* Mounties Group brand guide: Harbord Diggers palette on a white canvas, Montserrat as the web stand-in for Helvetica Neue */
+:root{
+  --blue:#00539B; --turq:#6EBBBF; --sky:#CEEBEA; --lemon:#FFF685; --grey:#BCBEC0; --coal:#404043;
+  --gold:#E6A45C; --sand:#EDC494; --red:#C13D48; --white:#fff; --mist:#f2fafa;
+  --line:rgba(0,83,155,.14);
+  --display:"Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif; --body:var(--display);
+  --pad:clamp(20px,4.5vw,72px);
+  --menu-bg:var(--sky); --menu-fg:var(--blue); --menu-accent:var(--coal);
+}
+body{background:var(--white);color:var(--coal);font:400 16px/1.7 var(--body)}
+.wrap{padding-inline:var(--pad);max-width:1480px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);color:var(--blue);text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font:600 11.5px/1.2 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--blue)}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lemon);box-shadow:0 0 0 1.5px var(--blue);transform:rotate(45deg)}
+.boxed{display:inline-block;padding:.5em .9em .5em 1.1em;background:var(--blue);color:#fff;font:600 11.5px/1.2 var(--body);letter-spacing:.3em;text-transform:uppercase}
+.outline{color:#fff;-webkit-text-stroke:3px var(--blue);paint-order:stroke fill}
+
+.btn{white-space:nowrap;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 30px;background:var(--blue);color:#fff;font:700 12px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;transition:color .45s var(--ease),transform .45s var(--ease),box-shadow .45s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--lemon);transform:translateY(101%);transition:transform .55s var(--ease)}
+.btn:hover{color:var(--blue);transform:translateY(-2px);box-shadow:0 16px 28px -18px rgba(0,83,155,.8)}
+.btn:hover::before{transform:none}
+.btn .arrow{transition:transform .45s var(--ease)}
+.btn:hover .arrow{transform:translateX(4px)}
+.btn:hover .arrow--down{transform:translateY(4px)}
+.btn--lemon{background:var(--lemon);color:var(--blue)}
+.btn--lemon::before{background:#fff}
+.link{position:relative;font:700 12px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+.link::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;background:var(--lemon);box-shadow:0 1px 0 var(--blue);transform-origin:left;transition:transform .5s var(--ease)}
+.link:hover::after{transform:scaleX(.35)}
+
+/* Top strip + header */
+.top{display:flex;justify-content:center;gap:10px 26px;flex-wrap:wrap;padding:9px var(--pad);background:var(--blue);color:#fff;font:500 10.5px/1.4 var(--body);letter-spacing:.26em;text-transform:uppercase;text-align:center}
+.top b{font-weight:700;color:var(--lemon)}
+.hd{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;height:78px;padding:0 var(--pad);background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:height .5s var(--ease),border-color .5s,box-shadow .5s,background .4s}
+.hd.is-scrolled{height:64px;border-color:var(--line);box-shadow:0 16px 30px -28px rgba(0,83,155,.7)}
+.hd__logo{align-self:flex-start;display:block;padding:18px 22px 16px;background:var(--blue);border-radius:0 0 4px 4px;box-shadow:0 18px 30px -20px rgba(0,83,155,.9);transition:padding .5s var(--ease)}
+.hd__logo img{height:64px;width:auto;transition:height .5s var(--ease)}
+.hd.is-scrolled .hd__logo{padding:10px 18px}
+.hd.is-scrolled .hd__logo img{height:48px}
+.hd__nav{display:flex;gap:clamp(18px,2.8vw,44px);font:600 11.5px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.hd__nav a{position:relative;padding:10px 0}
+.hd__nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--lemon);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.hd__nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.hd__actions{display:flex;align-items:center;gap:16px}
+.hd__actions .btn{height:44px;padding:0 22px;font-size:11px}
+.burger{display:none;color:var(--blue)}
+.menu-open .hd{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;border-color:transparent}
+.menu-open .hd__actions>a{opacity:0;pointer-events:none}
+.menu__links a{font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+
+/* Hero */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,520px);align-items:center;gap:clamp(24px,5vw,90px);padding:clamp(40px,6vh,72px) var(--pad) 130px;max-width:1480px;margin-inline:auto}
+.hero__bg{position:absolute;inset:0 calc(50% - 50vw);z-index:-1;overflow:hidden;background:radial-gradient(60% 70% at 76% 48%,var(--mist),#fff 70%)}
+/* Hanging strings of gold lights, borrowed from the Group's Christmas invitation */
+.strings{position:absolute;inset:0 0 auto 0;height:300px}
+.strings i{position:absolute;top:0;left:var(--x);width:1px;height:var(--h);background:linear-gradient(rgba(230,164,92,.15),rgba(230,164,92,.7));transform-origin:50% 0;transform:scaleY(0);transition:transform 1.5s var(--ease) calc(var(--i) * 45ms + .2s);animation:sway var(--t) ease-in-out infinite alternate}
+.is-loaded .strings i,.rv.is-open .strings i{transform:none}
+.strings i::after{content:"";position:absolute;left:50%;bottom:-3px;width:var(--s);height:var(--s);margin-left:calc(var(--s) / -2);border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(255,246,133,.9);animation:glint 3.2s ease-in-out infinite;animation-delay:calc(var(--i) * -.41s)}
+.strings i::before{content:"";position:absolute;left:50%;top:var(--m);width:3px;height:3px;margin-left:-1.5px;border-radius:50%;background:var(--gold);opacity:.7}
+@keyframes sway{from{rotate:-1.6deg}to{rotate:1.6deg}}
+@keyframes glint{0%,100%{box-shadow:0 0 0 0 rgba(255,246,133,0)}50%{box-shadow:0 0 10px 4px rgba(255,246,133,.95)}}
+
+.hero__txt{position:relative}
+h1{isolation:isolate;margin-top:22px;font-size:clamp(42px,5.2vw,84px);line-height:1}
+h1 .l1{display:block;font-weight:200;font-size:.6em;letter-spacing:.3em}
+h1 .l2{position:relative;display:inline-block;margin:.08em 0 .1em -.14em;padding:.04em .14em .06em;font-weight:900;letter-spacing:-.015em}
+h1 .l2::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--lemon);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease-io) .35s}
+.is-loaded h1 .l2::before{transform:none}
+h1 .l3{display:block;font-weight:800;font-style:italic;font-size:.74em;letter-spacing:.01em}
+.hero__lede{max-width:520px;margin-top:22px;font-size:17px;font-weight:400;opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease) .7s,transform 1.1s var(--ease) .7s}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:28px;opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease) .85s,transform 1.1s var(--ease) .85s}
+.is-loaded .hero__lede,.is-loaded .hero__cta,.is-loaded .cd{opacity:1;transform:none}
+.cd{display:flex;align-items:flex-end;gap:clamp(14px,2vw,30px);margin-top:34px;padding-top:22px;border-top:1px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease) 1s,transform 1.1s var(--ease) 1s}
+.cd div{display:flex;flex-direction:column;gap:8px}
+.cd b{display:block;overflow:hidden;font:200 clamp(34px,3.6vw,56px)/1 var(--display);color:var(--blue);font-variant-numeric:tabular-nums}
+.cd b span{display:block}
+.cd b.tick span{animation:tick .55s var(--ease)}
+@keyframes tick{from{transform:translateY(-70%);opacity:0}}
+.cd div>span{font:600 10px/1 var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--coal)}
+.cd p{margin:0 0 2px auto;padding:10px 14px;background:var(--lemon);font:800 11px/1.35 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+
+/* The tree */
+.tree{position:relative;width:100%;max-width:470px;margin-inline:auto;aspect-ratio:520/660}
+.tree::before{content:"";position:absolute;inset:6% -8% 4%;border-radius:50%;background:radial-gradient(closest-side,rgba(206,235,234,.9),rgba(206,235,234,0));animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.06);opacity:.75}}
+.tree svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tier{transform-box:fill-box;transform-origin:50% 100%;opacity:0;transform:scale(.7,.5);transition:opacity .7s var(--ease),transform 1.1s cubic-bezier(.3,1.35,.5,1);transition-delay:calc(var(--i) * 130ms + .15s)}
+.is-loaded .tier{opacity:1;transform:none}
+.tier path{stroke-width:16;stroke-linejoin:round}
+.garland{fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;opacity:.85;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease-io) calc(var(--i) * 160ms + .7s)}
+.is-loaded .garland{stroke-dashoffset:0}
+.lt{opacity:0;transition:opacity .5s calc(var(--i) * 28ms + 1.1s)}
+.is-loaded .lt{opacity:1}
+.lt .h{opacity:.1;animation:tw 2.8s ease-in-out infinite;animation-delay:calc(var(--i) * -.37s)}
+.lt .b{fill:#fff;opacity:.9;transition:fill .8s,r .8s}
+@keyframes tw{0%,100%{opacity:var(--lo,.08)}50%{opacity:var(--hi,.42)}}
+.lt.on{--lo:.5;--hi:1}
+.lt.on .b{fill:var(--c);r:5}
+.star{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(0) rotate(-90deg);transition:opacity .6s 1s,transform 1.2s cubic-bezier(.3,1.5,.5,1) 1s}
+.is-loaded .star{opacity:1;transform:none}
+.star path{fill:#fff;stroke:var(--gold);stroke-width:3;stroke-linejoin:round;transition:fill .8s}
+.star__rays{opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity 1s}
+.star__rays line{stroke:var(--gold);stroke-width:2.5;stroke-linecap:round}
+.tree.is-lit .star path{fill:var(--lemon)}
+.tree.is-lit .star__rays{opacity:1;animation:spin 14s linear infinite}
+.tree.is-lit .lt{--lo:.7;--hi:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.koala{transform-box:fill-box;transform-origin:20% 90%;transform:translate(-54px,16px) rotate(-14deg);transition:transform 1.3s cubic-bezier(.3,1.3,.5,1) 2.2s}
+.is-loaded .koala{transform:none;animation:peek 11s ease-in-out 5s infinite}
+@keyframes peek{0%,78%,100%{transform:none}84%,92%{transform:translate(-30px,9px) rotate(-9deg)}}
+.koala .eye{transform-box:fill-box;transform-origin:center;animation:blink 6.3s infinite}
+@keyframes blink{0%,94%,100%{transform:none}97%{transform:scaleY(.1)}}
+
+.bb{position:absolute;left:var(--x);top:var(--y);width:var(--s,13.6%);margin-left:calc(var(--s,13.6%) / -2);opacity:0;translate:0 -26px;transition:opacity .6s calc(var(--i) * 110ms + 1.3s),translate 1s cubic-bezier(.3,1.6,.5,1) calc(var(--i) * 110ms + 1.3s)}
+.is-loaded .bb{opacity:1;translate:0 0}
+.bb__sw{position:relative;display:block;transform-origin:50% -24%;animation:swing var(--t,3.4s) ease-in-out infinite alternate;animation-delay:calc(var(--i) * -.6s)}
+@keyframes swing{from{transform:rotate(-4.5deg)}to{transform:rotate(4.5deg)}}
+.bb__sw::before{content:"";position:absolute;left:50%;bottom:100%;width:1.5px;height:24%;margin-left:-.75px;background:#fff}
+.bb__cap{position:absolute;z-index:1;left:50%;top:-8%;width:24%;height:13%;margin-left:-12%;border-radius:3px 3px 1px 1px;background:var(--gold)}
+.bb__ball{position:relative;display:block;aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 32% 26%,#fffef0 0 7%,var(--lemon) 36%,#f3e45c 100%);box-shadow:0 12px 20px -10px rgba(0,52,96,.7),inset 0 -8px 12px rgba(230,164,92,.3);transition:transform .5s var(--ease),box-shadow .6s}
+.bb__ball img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.5);transition:opacity .9s .3s,transform 1.6s var(--ease) .3s}
+.bb__n{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:1.9em;height:1.9em;margin:-.95em 0 0 -.95em;border-radius:50%;font:800 clamp(15px,1.75vw,25px)/1 var(--display);color:var(--blue);transition:transform .8s var(--ease) .2s,background .5s .2s,box-shadow .5s .2s}
+.bb__ring{position:absolute;inset:-9%;border-radius:50%;border:1.5px solid #fff;opacity:0}
+.bb:hover .bb__ball,.bb:focus-visible .bb__ball{transform:scale(1.12)}
+.bb:hover .bb__ring,.bb:focus-visible .bb__ring{animation:ping 1.3s var(--ease) infinite}
+.bb:focus-visible{outline:none}
+.bb:focus-visible .bb__ball{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--blue)}
+@keyframes ping{from{opacity:.95;transform:scale(.9)}to{opacity:0;transform:scale(1.45)}}
+.bb.is-open .bb__ball{box-shadow:0 0 0 3px var(--lemon),0 14px 22px -10px rgba(0,52,96,.7)}
+.bb.is-open .bb__ball img{opacity:1;transform:none}
+.bb.is-open .bb__n{background:var(--lemon);box-shadow:0 0 0 2px #fff;transform:translateY(118%) scale(.5)}
+.tree__hint{position:absolute;left:0;bottom:-6%;display:flex;align-items:center;gap:10px;font:600 10.5px/1.3 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--blue);opacity:0;transition:opacity 1s 2.4s}
+.is-loaded .tree__hint{opacity:1}
+.tree__hint i{width:34px;height:1.5px;background:var(--blue);transform-origin:left;animation:nudge 1.8s var(--ease-io) infinite alternate}
+@keyframes nudge{from{transform:scaleX(.4)}}
+
+/* Shoreline */
+.shore{position:relative;height:96px;margin-top:-96px;overflow:hidden;pointer-events:none}
+.shore svg{position:absolute;left:0;bottom:-1px;width:200%;max-width:none;height:100%;animation:drift 22s linear infinite}
+.shore svg:first-child{fill:var(--turq);opacity:.32;animation-duration:15s;animation-direction:reverse}
+.shore svg:last-child{fill:var(--sky)}
+@keyframes drift{to{transform:translateX(-50%)}}
+
+/* Your December: the mystery list */
+.dec{position:relative;background:var(--sky);padding:clamp(56px,8vw,110px) 0 clamp(70px,9vw,130px)}
+.dec__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,6vw,100px);align-items:start}
+.dec__head{position:sticky;top:110px}
+.dec h2{margin-top:22px;font-size:clamp(34px,4.1vw,64px);line-height:1.02;font-weight:900;letter-spacing:-.015em}
+.dec h2 em{display:block;font-weight:200;font-style:normal;letter-spacing:.14em;font-size:.72em;margin-top:.18em}
+.dec__head>p{max-width:420px;margin-top:22px}
+.meter{margin-top:34px;max-width:420px}
+.meter__top{display:flex;justify-content:space-between;align-items:baseline;font:600 11px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--blue)}
+.meter__top b{font:200 44px/1 var(--display);letter-spacing:0}
+.meter__bar{position:relative;height:6px;margin-top:14px;background:#fff}
+.meter__bar i{position:absolute;inset:0;background:var(--blue);transform:scaleX(calc(var(--n,0) / 7));transform-origin:left;transition:transform 1s var(--ease)}
+.meter__bar i::after{content:"";position:absolute;right:-7px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--lemon);box-shadow:0 0 0 2px var(--blue),0 0 14px 4px rgba(255,246,133,.9)}
+.meter button{margin-top:26px}
+.rows{display:grid;gap:10px}
+.row{position:relative;display:grid;grid-template-columns:64px 118px minmax(0,1fr) auto;align-items:center;gap:0 20px;width:100%;padding:20px 24px 20px 0;background:#fff;text-align:left;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--lemon);transition:width .6s var(--ease)}
+.row:hover{transform:translateX(6px);box-shadow:0 22px 34px -28px rgba(0,83,155,.8)}
+.row:hover::before{width:64px}
+.row>*{position:relative}
+.row__n{font:800 20px/1 var(--display);color:var(--blue);text-align:center;padding-left:6px}
+.row__d{font:700 11px/1.3 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+.row__t{display:grid;min-width:0}
+.row__t>*{grid-area:1/1;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.row__clue{font:300 italic 17px/1.3 var(--body);color:var(--coal)}
+.row__title{font:800 17px/1.25 var(--display);text-transform:uppercase;color:var(--blue);opacity:0;transform:translateY(100%)}
+.row__title small{display:block;margin-top:5px;font:500 11px/1.3 var(--body);letter-spacing:.14em;color:var(--coal)}
+.row__go{display:inline-flex;align-items:center;gap:10px;font:700 10.5px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.row__go i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--sky);font-style:normal;font-size:15px;letter-spacing:0;transition:background .4s,transform .6s var(--ease)}
+.row:hover .row__go i{background:var(--lemon);transform:rotate(90deg)}
+.row.is-open::before{background:var(--blue)}
+.row.is-open .row__n{color:var(--lemon)}
+.row.is-open::before{width:64px}
+.row.is-open .row__clue{opacity:0;transform:translateY(-100%)}
+.row.is-open .row__title{opacity:1;transform:none}
+.row.is-open .row__go i{background:var(--lemon)}
+
+/* Good to know */
+.know{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px);padding-block:clamp(70px,9vw,130px)}
+.kn{padding-top:26px;border-top:6px solid var(--lemon)}
+.kn svg{width:42px;height:42px;color:var(--turq)}
+.kn h3{margin-top:18px;font-size:19px;font-weight:800;letter-spacing:.04em}
+.kn p{margin-top:10px;font-size:15.5px}
+.kn .link{display:inline-block;margin-top:22px}
+
+/* Closing photograph */
+.close{position:relative;display:grid;align-items:end;min-height:min(86vh,760px);overflow:hidden;padding:clamp(40px,6vw,90px) var(--pad)}
+.close figure{position:absolute;inset:-12% 0}
+.close figure img{width:100%;height:100%;object-fit:cover;transform:translateY(calc((var(--p,0) - .5) * 16%))}
+.close::after{content:"";position:absolute;inset:0;background:linear-gradient(28deg,rgba(0,58,108,.78),rgba(0,83,155,0) 58%)}
+.festoon{position:absolute;z-index:2;top:0;left:0;width:100%;height:96px;overflow:visible}
+.festoon path{fill:none;stroke:#fff;stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--ease-io)}
+.festoon.in path{stroke-dashoffset:0}
+.festoon g{opacity:0;transition:opacity .5s calc(var(--i) * 40ms + .5s)}
+.festoon.in g{opacity:1}
+.festoon .h{animation:tw 2.4s ease-in-out infinite;animation-delay:calc(var(--i) * -.31s);--lo:.35;--hi:1}
+.close__txt{position:relative;z-index:2;max-width:760px}
+.close__txt h2{display:flex;flex-direction:column;align-items:flex-start;gap:8px;font-size:clamp(34px,5.2vw,80px);line-height:1;font-weight:900}
+.close__txt h2 span{padding:.1em .22em;background:#fff}
+.close__txt h2 span+span{background:var(--blue);color:#fff;font-weight:200;letter-spacing:.12em}
+.close__txt p{max-width:440px;margin-top:22px;color:#fff;font-weight:500;text-shadow:0 1px 18px rgba(0,40,80,.6)}
+.close__txt div{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+
+/* Footer lock-up: white footer, lemon baseline */
+footer{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px 48px;padding:38px var(--pad) 34px;border-bottom:18px solid var(--lemon);background:#fff}
+footer .ft__logo{padding:14px 18px;background:var(--blue)}
+footer .ft__logo img{height:54px;width:auto}
+footer address{font:300 12.5px/1.8 var(--body);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--coal)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 26px;font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+footer small{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:18px 0 44px;border-top:1px solid var(--line);font-size:12px;color:var(--coal)}
+
+/* The reveal: a bauble opens into its event */
+.rv{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:clamp(14px,3vw,40px);visibility:hidden;transition:visibility 0s .9s}
+.rv.is-open{visibility:visible;transition:none}
+.rv__bg{position:absolute;inset:0;overflow:hidden;background:var(--sky);clip-path:circle(0 at var(--cx,50%) var(--cy,50%));transition:clip-path .9s var(--ease-io)}
+.rv.is-open .rv__bg{clip-path:circle(150% at var(--cx,50%) var(--cy,50%))}
+.rv__card{position:relative;display:grid;grid-template-columns:minmax(0,11fr) minmax(0,12fr);width:min(100%,1040px);max-height:100%;overflow:auto;background:#fff;box-shadow:0 50px 90px -50px rgba(0,60,110,.75);opacity:0;transform:translateY(40px) scale(.96);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.rv.is-open .rv__card{opacity:1;transform:none;transition:opacity .7s var(--ease) .35s,transform 1s var(--ease) .35s}
+.rv__ph{position:relative;min-height:440px;overflow:hidden;background:var(--mist)}
+.rv__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(100% 0 0 0);transform:scale(1.25);transition:clip-path 0s .6s,transform 0s .6s}
+.rv.is-open:not(.is-swap) .rv__ph img{clip-path:inset(0);transform:none;transition:clip-path 1.1s var(--ease-io) .5s,transform 1.9s var(--ease) .5s}
+.rv__date{position:absolute;left:0;top:28px;display:grid;justify-items:center;gap:5px;min-width:96px;padding:16px 16px 14px;background:var(--lemon);color:var(--blue);font:700 10.5px/1 var(--body);letter-spacing:.24em;text-transform:uppercase}
+.rv__date b{font:900 46px/.9 var(--display);letter-spacing:-.02em}
+.rv__txt{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,4vw,56px)}
+.rv__txt>*{opacity:0;transform:translateY(22px);transition:opacity .3s,transform .3s}
+.rv.is-open:not(.is-swap) .rv__txt>*{opacity:1;transform:none;transition:opacity .8s var(--ease) calc(var(--k) * 80ms + .75s),transform 1s var(--ease) calc(var(--k) * 80ms + .75s)}
+.rv__when{margin-top:26px;font:700 11.5px/1.5 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.rv__txt h2{margin-top:12px;font-size:clamp(30px,3.5vw,50px);line-height:1.02;font-weight:900;letter-spacing:-.015em}
+.rv__txt p{margin-top:18px;font-size:16px}
+.rv__cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:30px}
+.rv__x{position:absolute;z-index:3;right:14px;top:14px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--blue);font-size:24px;line-height:1;box-shadow:0 8px 20px -10px rgba(0,60,110,.6);transition:background .4s,transform .6s var(--ease)}
+.rv__x:hover{background:var(--lemon);transform:rotate(90deg)}
+.rv-open{overflow:hidden}
+.rv-open .switcher{opacity:0;pointer-events:none}
+.spark{position:fixed;z-index:210;left:var(--x);top:var(--y);width:10px;height:10px;margin:-5px;background:var(--gold);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);pointer-events:none;animation:spark 1.1s var(--ease) forwards}
+.spark:nth-child(odd){background:var(--lemon)}
+@keyframes spark{from{opacity:1;transform:scale(.4)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.5) rotate(140deg)}}
+
+@media (max-width:1020px){
+  .hd__nav{display:none}
+  .burger{display:grid}
+  .hero{grid-template-columns:1fr;padding-bottom:130px}
+  .hero__txt{padding-top:44px}
+  .tree{max-width:440px;margin-top:10px}
+  .tree::before{inset:6% 0 4%}
+  .dec__in{grid-template-columns:1fr}
+  .dec__head{position:static}
+  .know{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;justify-items:start}
+}
+@media (max-width:640px){
+  .top span{display:none}
+  .hd{height:66px}
+  .hd__logo{padding:12px 16px}
+  .hd__logo img{height:50px}
+  .hd__actions .btn{display:none}
+  .strings{height:200px}
+  .cd p{display:none}
+  .row{grid-template-columns:50px minmax(0,1fr) auto;gap:4px 14px;padding:16px 16px 16px 0}
+  .row:hover::before,.row.is-open::before{width:50px}
+  .row__d{grid-column:2}
+  .row__t{grid-column:2;grid-row:2}
+  .row__n{grid-row:1/3}
+  .row__go{grid-row:1/3;grid-column:3}
+  .row__go span{display:none}
+  .rv__card{grid-template-columns:1fr}
+  .rv__ph{min-height:0;aspect-ratio:16/10}
+  .rv__date{top:16px;min-width:76px;padding:12px}
+  .rv__date b{font-size:34px}
+  .close{min-height:620px}
+}
+</style>
+</head>
+<body>
+
+<div class="top"><b>Christmas at Harbord Diggers</b><span>Seven surprises · 4 – 24 December · Freshwater</span></div>
+
+<header class="hd" data-header>
+  <a class="hd__logo" href="#top" aria-label="Harbord Diggers home"><img src="../assets/logo.svg" alt="Harbord Diggers" width="250" height="98"></a>
+  <nav class="hd__nav" aria-label="Primary">
+    <a href="#tree">The tree</a>
+    <a href="#december">Your December</a>
+    <a href="#know">Good to know</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <div class="hd__actions">
+    <a class="btn" href="#tree">Pick a bauble</a>
+    <button class="burger" data-menu-toggle aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" aria-label="Menu">
+  <nav class="menu__links">
+    <a href="#tree">The tree</a>
+    <a href="#december">Your December</a>
+    <a href="#know">Good to know</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <div class="menu__foot"><a href="https://www.harborddiggers.com.au/whats-on">What's On</a><a href="tel:0291054888">(02) 9105 4888</a><span>88 Evans St, Freshwater NSW 2096</span></div>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"><div class="strings" data-strings="34"></div></div>
+    <div class="hero__txt">
+      <p class="eyebrow">An Aussie Christmas by the sea</p>
+      <h1><span class="l1" data-split="load">Seven</span><span class="l2" data-split="load" style="--base:140ms">Surprises</span><span class="l3 outline" data-split="load" style="--base:280ms">on the tree</span></h1>
+      <p class="hero__lede">Seven baubles. Seven December get-togethers at Harbord Diggers. We're not telling you what's inside. Pick one, give it a tap and watch the tree light up.</p>
+      <div class="hero__cta">
+        <a class="btn" href="#tree">Pick a bauble <span class="arrow">→</span></a>
+        <a class="link" href="#december">See your December</a>
+      </div>
+      <div class="cd" data-countdown="2026-12-25T00:00:00+11:00" aria-label="Countdown to Christmas">
+        <div><b data-u="d"><span>00</span></b><span>Days</span></div>
+        <div><b data-u="h"><span>00</span></b><span>Hours</span></div>
+        <div><b data-u="m"><span>00</span></b><span>Mins</span></div>
+        <div><b data-u="s"><span>00</span></b><span>Secs</span></div>
+        <p>Until<br>Christmas</p>
+      </div>
+    </div>
+
+    <div class="tree" id="tree" data-tree>
+      <svg viewBox="0 0 520 660" aria-hidden="true">
+        <defs>
+          <radialGradient id="h0"><stop offset="0" stop-color="#FFF685"/><stop offset="1" stop-color="#FFF685" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h2"><stop offset="0" stop-color="#FFD9A8"/><stop offset="1" stop-color="#E6A45C" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="260" cy="646" rx="150" ry="9" fill="#CEEBEA"/>
+        <rect x="244" y="578" width="32" height="42" fill="#EDC494"/>
+        <path d="M214 612h92l-9 34h-74z" fill="#00539B"/>
+        <rect x="208" y="606" width="104" height="12" rx="2" fill="#FFF685"/>
+        <g class="tier" style="--i:0"><path d="M260 330 L462 580 H58Z" fill="#2f86a8" stroke="#2f86a8"/></g>
+        <g class="koala">
+          <g transform="translate(432 394) rotate(9) scale(1.14)">
+            <circle cx="-33" cy="-21" r="21" fill="#a9acaf"/><circle cx="33" cy="-21" r="21" fill="#a9acaf"/>
+            <circle cx="-33" cy="-20" r="11.5" fill="#f1f2f3"/><circle cx="33" cy="-20" r="11.5" fill="#f1f2f3"/>
+            <ellipse rx="38" ry="33" fill="#BCBEC0"/>
+            <path d="M-23 -27C-21 -50 -4 -68 14 -63C33 -58 46 -46 51 -27C42 -38 33 -40 27 -33Z" fill="#C13D48"/>
+            <rect x="-30" y="-37" width="62" height="13" rx="6.5" transform="rotate(-5)" fill="#fff" stroke="#e1e5e7" stroke-width="1.2"/>
+            <circle cx="52" cy="-25" r="7.5" fill="#fff" stroke="#e1e5e7" stroke-width="1.2"/>
+            <path d="M-9 -3Q0 -8 9 -3Q12 8 6 15Q0 19 -6 15Q-12 8 -9 -3Z" fill="#404043"/>
+            <circle class="eye" cx="-18" cy="-6" r="3.4" fill="#404043"/><circle class="eye" cx="18" cy="-6" r="3.4" fill="#404043"/>
+            <path d="M-5 22Q0 25 5 22" fill="none" stroke="#404043" stroke-width="1.6" stroke-linecap="round"/>
+          </g>
+        </g>
+        <g class="tier" style="--i:1"><path d="M260 216 L424 452 H96Z" fill="#4fa5b3" stroke="#4fa5b3"/></g>
+        <g class="koala"><ellipse cx="398" cy="424" rx="9" ry="14" transform="rotate(-34 398 424)" fill="#a9acaf"/></g>
+        <g class="tier" style="--i:2"><path d="M260 122 L384 322 H136Z" fill="#6EBBBF" stroke="#6EBBBF"/></g>
+        <g class="tier" style="--i:3"><path d="M260 56 L338 200 H182Z" fill="#93d0d2" stroke="#93d0d2"/></g>
+        <path class="garland" style="--i:0" pathLength="1" d="M200 168Q262 200 322 158"/>
+        <path class="garland" style="--i:1" pathLength="1" d="M160 286Q264 330 362 268"/>
+        <path class="garland" style="--i:2" pathLength="1" d="M124 414Q264 468 400 392"/>
+        <path class="garland" style="--i:3" pathLength="1" d="M88 542Q264 606 436 520"/>
+        <g data-lights></g>
+        <g transform="translate(260 40)">
+          <g class="star__rays"><line y1="-34" y2="-44"/><line y1="34" y2="44"/><line x1="-34" x2="-44"/><line x1="34" x2="44"/><line x1="24" y1="-24" x2="31" y2="-31"/><line x1="-24" y1="24" x2="-31" y2="31"/><line x1="-24" y1="-24" x2="-31" y2="-31"/><line x1="24" y1="24" x2="31" y2="31"/></g>
+          <g class="star"><path d="M0 -26L7.6 -8.5L26 -6.5L12 6L16 24.500L0 15L-16 24.500L-12 6L-26 -6.500L-7.600 -8.500Z"/></g>
+        </g>
+      </svg>
+      <div data-baubles></div>
+      <p class="tree__hint" aria-hidden="true"><i></i>Tap a bauble to unwrap it</p>
+    </div>
+  </section>
+
+  <div class="shore" aria-hidden="true">
+    <svg viewBox="0 0 2400 96" preserveAspectRatio="none"><path d="M0 46Q150 6 300 46T600 46T900 46T1200 46T1500 46T1800 46T2100 46T2400 46V96H0Z"/></svg>
+    <svg viewBox="0 0 2400 96" preserveAspectRatio="none"><path d="M0 60Q200 28 400 60T800 60T1200 60T1600 60T2000 60T2400 60V96H0Z"/></svg>
+  </div>
+
+  <section class="dec" id="december">
+    <div class="dec__in wrap">
+      <div class="dec__head">
+        <span class="boxed reveal">Your December</span>
+        <h2 data-split>Seven dates. <em>Zero spoilers.</em></h2>
+        <p class="reveal">Every date below is a real night out at the Diggers. What happens on it stays under wraps until you say so. Reveal one here, or tap its bauble on the tree.</p>
+        <div class="meter reveal" style="--d:1">
+          <div class="meter__top"><span data-meter-label>Unwrapped so far</span><span><b data-opened>0</b> / 7</span></div>
+          <div class="meter__bar"><i></i></div>
+          <button class="link" type="button" data-open-all>Reveal all seven</button>
+        </div>
+      </div>
+      <div class="rows" data-rows></div>
+    </div>
+  </section>
+
+  <section class="know wrap" id="know">
+    <div class="kn reveal">
+      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="22" cy="22" r="8"/><path d="M22 4v6M22 34v6M4 22h6M34 22h6M9.3 9.3l4.2 4.2M30.5 30.5l4.2 4.2M9.3 34.7l4.2-4.2M30.5 13.5l4.2-4.2"/></svg>
+      <h3>Everyone's welcome</h3>
+      <p>Members, guests, kids and grandparents. Most events are free to walk into. Not a member yet? Join at the door.</p>
+      <a class="link" href="https://aaw.rxcx.au/c6XS">Become a member</a>
+    </div>
+    <div class="kn reveal" style="--d:1">
+      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="32" height="29" rx="2"/><path d="M6 17h32M14 5v8M30 5v8M15 27l5 5 9-10"/></svg>
+      <h3>Book the sit-down ones</h3>
+      <p>A couple of the surprises come with a table and a menu. Once you've unwrapped them, reserve early so nobody misses out.</p>
+      <a class="link" href="https://www.harborddiggers.com.au/whats-on">Make a booking</a>
+    </div>
+    <div class="kn reveal" style="--d:2">
+      <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 30c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 4-3M4 38c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 4-3"/><path d="M10 21a12 12 0 0 1 24 0"/></svg>
+      <h3>Leave the car at home</h3>
+      <p>The courtesy bus runs right through December, so the only thing you need to plan is what to order.</p>
+      <a class="link" href="https://www.harborddiggers.com.au/member-services/courtesy-bus">Courtesy bus</a>
+    </div>
+  </section>
+
+  <section class="close" id="visit" data-progress="view">
+    <figure><img src="../assets/img/terrace-dusk.jpg" alt="Harbord Diggers from the terrace at dusk" loading="lazy"></figure>
+    <svg class="festoon reveal-fade" data-festoon viewBox="0 0 2400 96" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
+    <div class="close__txt reveal">
+      <h2><span>See you</span><span>by the water</span></h2>
+      <p>88 Evans Street, Freshwater. Seven dates, one long summer. Come for one or come for the lot.</p>
+      <div>
+        <a class="btn btn--lemon" href="https://www.harborddiggers.com.au/whats-on">Explore what's on <span class="arrow">→</span></a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Harbord+Diggers+88+Evans+St+Freshwater+NSW+2096">Get directions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="ft__logo" href="#top"><img src="../assets/logo.svg" alt="Harbord Diggers" width="250" height="98"></a>
+  <address>(02) 9105 4888 &nbsp;|&nbsp; 88 Evans Street Freshwater &nbsp;|&nbsp; harborddiggers.com.au</address>
+  <nav>
+    <a href="https://www.harborddiggers.com.au/whats-on/weekly-activities">What's On</a>
+    <a href="https://www.harborddiggers.com.au/dining-deals">Dining</a>
+    <a href="https://www.harborddiggers.com.au/functions">Functions</a>
+    <a href="https://www.harborddiggers.com.au/about/contact-us">Contact</a>
+  </nav>
+  <small><span>Harbord Diggers © 2026. Part of Mounties Group.</span><a href="tel:1800858858">Help is close at hand — GambleAware 1800 858 858</a></small>
+</footer>
+
+<div class="rv" data-rv role="dialog" aria-modal="true" aria-labelledby="rv-title" inert>
+  <div class="rv__bg" data-rv-close><div class="strings" data-strings="26"></div></div>
+  <div class="rv__card">
+    <button class="rv__x" type="button" data-rv-close aria-label="Close">×</button>
+    <div class="rv__ph">
+      <img data-rv-img src="" alt="">
+      <div class="rv__date"><span data-rv-dow></span><b data-rv-d></b><span>Dec</span></div>
+    </div>
+    <div class="rv__txt">
+      <span class="boxed" style="--k:0">Surprise <span data-rv-n>1</span> of 7</span>
+      <span class="rv__when" style="--k:1" data-rv-when></span>
+      <h2 id="rv-title" style="--k:2" data-rv-title></h2>
+      <p style="--k:3" data-rv-desc></p>
+      <div class="rv__cta" style="--k:4">
+        <a class="btn" href="https://www.harborddiggers.com.au/whats-on">Explore <span class="arrow">→</span></a>
+        <button class="link" type="button" data-rv-next>Next surprise</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/common.js"></script>
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const r = (a, b) => a + Math.random() * (b - a);
+  const IMG = '../assets/img/';
+  // Placeholder programme: x/y place each bauble on the tree, g is the garland whose lights it switches on
+  const EVENTS = [
+    { d: 4, dow: 'Fri', when: '6pm · Ocean Terrace', title: 'Lights On at the Diggers', clue: 'Something sparkles at six', desc: 'We flick the switch on ten thousand fairy lights as the sun drops behind Freshwater. Live acoustic sets, a mango spritz on arrival and the first mince pies of the season.', img: 'terrace-dusk.jpg', x: 50, y: 23.5 },
+    { d: 6, dow: 'Sun', when: '9am · DD Collective', title: "Santa's Seaside Brunch", clue: 'A big breakfast and a bigger beard', desc: 'Pancakes, tropical fruit and bottomless coffee, with a visit from the man himself (in boardies). Bring the kids, bring the grandparents, bring the camera.', img: 'dd-brunch.jpg', x: 40.5, y: 39.5 },
+    { d: 11, dow: 'Fri', when: '4 – 9pm · The Terrace', title: 'Twilight Christmas Market', clue: 'Bring a tote bag', desc: 'Thirty Northern Beaches makers under the festoon lights. Ceramics, swimwear, puddings and presents you will not find at the shops, plus a bar that stays open late.', img: 'ocean-terrace.jpg', x: 60, y: 42.5 },
+    { d: 13, dow: 'Sun', when: '5.30pm · The Lawn', title: 'Carols by the Sea', clue: 'Warm up your singing voice', desc: 'A community choir, a brass band and a few hundred neighbours singing as the light goes gold. Rugs and picnic chairs welcome. Candles supplied.', img: 'live-music.jpg', x: 31, y: 57.5 },
+    { d: 17, dow: 'Thu', when: '12pm · Teddy Larkin\'s', title: 'The Long Christmas Lunch', clue: 'Clear your afternoon', desc: 'Four generous courses down one very long table. Glazed ham, king prawns, pavlova for the table and nowhere you need to be until dinner.', img: 'teddy-table.jpg', x: 50.5, y: 55 },
+    { d: 19, dow: 'Sat', when: '5pm · Ocean Terrace', title: 'Summer Sundowner Party', clue: 'Dress for a sunset', desc: 'DJs from golden hour, a spritz bar and the best view of the headland in Freshwater. The unofficial start of the summer holidays.', img: 'cocktails.jpg', x: 69.5, y: 59 },
+    { d: 24, dow: 'Thu', when: 'From 4pm · Teddy Larkin\'s', title: 'Christmas Eve Feast', clue: 'The big one. Come hungry', desc: 'Seafood platters, slow-cooked ribs and all the trimmings, so nobody at your place has to cook. Santa tracker on the big screen for the little ones.', img: 'teddy-ribs.jpg', x: 50, y: 75, big: true },
+  ];
+  const GARLAND = [0, 1, 1, 2, 2, 2, 3];
+
+  // Hanging strings of gold lights
+  document.querySelectorAll('[data-strings]').forEach((el) => {
+    const n = +el.dataset.strings;
+    for (let i = 0; i < n; i++) {
+      const s = document.createElement('i');
+      s.style.cssText = `--i:${i};--x:${((i + r(.15, .85)) / n * 100).toFixed(2)}%;--h:${(r(14, 100) * (i / n < .56 ? .5 : 1)).toFixed(0)}%;--s:${r(3, 8).toFixed(1)}px;--m:${r(20, 70).toFixed(0)}%;--t:${r(3.5, 7).toFixed(1)}s`;
+      el.append(s);
+    }
+  });
+
+  // Fairy lights along each garland
+  const tree = document.querySelector('[data-tree]');
+  const lights = tree.querySelector('[data-lights]');
+  const cols = ['#FFF685', '#fff', '#FFD9A8'];
+  let li = 0, html = '';
+  tree.querySelectorAll('.garland').forEach((path, g) => {
+    const len = path.getTotalLength(), n = 5 + g * 2, owners = GARLAND.map((v, i) => (v === g ? i : -1)).filter((v) => v >= 0);
+    for (let k = 0; k < n; k++) {
+      const t = (k + .5) / n, p = path.getPointAtLength(len * t), c = li % 3;
+      const owner = owners[Math.min(Math.floor(t * owners.length), owners.length - 1)];
+      html += `<g class="lt" data-g="${owner}" style="--i:${li++};--c:${cols[c]}" transform="translate(${p.x.toFixed(1)} ${(p.y + 5).toFixed(1)})"><circle class="h" r="17" fill="url(#h${c})"/><circle class="b" r="4"/></g>`;
+    }
+  });
+  lights.innerHTML = html;
+
+  // Festoon over the closing photograph
+  const fest = document.querySelector('[data-festoon]');
+  if (fest) {
+    let d = 'M0 4', bulbs = '', n = 0;
+    for (let x = 0; x < 2400; x += 300) {
+      d += ` Q${x + 150} 90 ${x + 300} 4`;
+      [0.16, 0.33, 0.5, 0.67, 0.84].forEach((t) => {
+        const c = n % 3;
+        bulbs += `<g style="--i:${n++}" transform="translate(${(x + 300 * t).toFixed(1)} ${(4 + 172 * t * (1 - t) + 7).toFixed(1)})"><circle class="h" r="20" fill="url(#h${c})"/><circle r="4.5" fill="${cols[c]}"/></g>`;
+      });
+    }
+    fest.innerHTML = `<path pathLength="1" d="${d}"/>${bulbs}`;
+  }
+
+  // Countdown to Christmas
+  const cd = document.querySelector('[data-countdown]');
+  const target = new Date(cd.dataset.countdown).getTime();
+  const units = { d: 864e5, h: 36e5, m: 6e4, s: 1e3 };
+  const tick = () => {
+    let left = Math.max(target - Date.now(), 0);
+    Object.entries(units).forEach(([u, ms]) => {
+      const b = cd.querySelector(`[data-u="${u}"]`);
+      const v = String(Math.floor(left / ms)).padStart(2, '0');
+      left %= ms;
+      if (b.firstElementChild.textContent === v) return;
+      b.firstElementChild.textContent = v;
+      b.classList.remove('tick'); void b.offsetWidth; b.classList.add('tick');
+    });
+  };
+  tick();
+  setInterval(tick, 1000);
+
+  // Baubles and mystery rows
+  const baubleBox = tree.querySelector('[data-baubles]');
+  const rowBox = document.querySelector('[data-rows]');
+  EVENTS.forEach((e, i) => {
+    const full = `${e.dow} ${e.d} December`;
+    baubleBox.insertAdjacentHTML('beforeend', `<button class="bb" type="button" data-ev="${i}" style="--i:${i};--x:${e.x}%;--y:${e.y}%;--t:${(3 + (i % 3) * .5).toFixed(1)}s${e.big ? ';--s:16.5%' : ''}" aria-label="Unwrap the surprise for ${full}"><span class="bb__sw"><span class="bb__cap"></span><span class="bb__ring"></span><span class="bb__ball"><img src="${IMG + e.img}" alt="" loading="lazy"></span><span class="bb__n">${e.d}</span></span></button>`);
+    rowBox.insertAdjacentHTML('beforeend', `<button class="row reveal" type="button" data-ev="${i}" style="--d:${i}" aria-label="Reveal the surprise for ${full}"><span class="row__n">${String(i + 1).padStart(2, '0')}</span><span class="row__d">${e.dow} ${e.d} Dec</span><span class="row__t"><span class="row__clue">${e.clue}&hellip;</span><span class="row__title"></span></span><span class="row__go"><span>Reveal</span><i>+</i></span></button>`);
+  });
+  const baubles = [...baubleBox.children], rows = [...rowBox.children];
+  const io = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .15 });
+  rows.forEach((row) => io.observe(row));
+
+  const done = new Set();
+  const openedEl = document.querySelector('[data-opened]');
+  const meter = document.querySelector('.meter');
+  const allBtn = document.querySelector('[data-open-all]');
+  const mark = (i) => {
+    if (done.has(i)) return;
+    done.add(i);
+    const e = EVENTS[i];
+    baubles[i].classList.add('is-open');
+    baubles[i].setAttribute('aria-label', `${e.title}, ${e.dow} ${e.d} December`);
+    rows[i].classList.add('is-open');
+    rows[i].setAttribute('aria-label', `${e.title}, ${e.dow} ${e.d} December`);
+    rows[i].querySelector('.row__title').innerHTML = `${e.title}<small>${e.when}</small>`;
+    rows[i].querySelector('.row__go span').textContent = 'Details';
+    lights.querySelectorAll(`[data-g="${i}"]`).forEach((l) => l.classList.add('on'));
+    openedEl.textContent = done.size;
+    meter.style.setProperty('--n', done.size);
+    if (done.size === EVENTS.length) {
+      tree.classList.add('is-lit');
+      document.querySelector('[data-meter-label]').textContent = 'The tree is lit';
+      allBtn.hidden = true;
+    }
+  };
+
+  // Reveal overlay
+  const rv = document.querySelector('[data-rv]');
+  const q = (s) => rv.querySelector(s);
+  let current = 0, from = null;
+  const fill = (i) => {
+    const e = EVENTS[i];
+    current = i;
+    q('[data-rv-img]').src = IMG + e.img;
+    q('[data-rv-dow]').textContent = e.dow;
+    q('[data-rv-d]').textContent = e.d;
+    q('[data-rv-n]').textContent = i + 1;
+    q('[data-rv-when]').textContent = `${e.dow} ${e.d} December · ${e.when}`;
+    q('[data-rv-title]').textContent = e.title;
+    q('[data-rv-desc]').textContent = e.desc;
+    mark(i);
+  };
+  const burst = (x, y) => {
+    if (reduced) return;
+    for (let k = 0; k < 16; k++) {
+      const s = document.createElement('i'), a = Math.random() * Math.PI * 2, dist = r(60, 190);
+      s.className = 'spark';
+      s.style.cssText = `--x:${x}px;--y:${y}px;--dx:${(Math.cos(a) * dist).toFixed(0)}px;--dy:${(Math.sin(a) * dist).toFixed(0)}px`;
+      document.body.append(s);
+      setTimeout(() => s.remove(), 1150);
+    }
+  };
+  const open = (i, el) => {
+    const b = el.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2;
+    from = el;
+    rv.style.setProperty('--cx', x + 'px');
+    rv.style.setProperty('--cy', y + 'px');
+    fill(i);
+    burst(x, y);
+    rv.inert = false;
+    rv.classList.add('is-open');
+    document.body.classList.add('rv-open');
+    q('.rv__x').focus({ preventScroll: true });
+  };
+  const close = () => {
+    if (!rv.classList.contains('is-open')) return;
+    rv.classList.remove('is-open');
+    rv.inert = true;
+    document.body.classList.remove('rv-open');
+    if (from) from.focus({ preventScroll: true });
+  };
+  [...baubles, ...rows].forEach((el) => el.addEventListener('click', () => open(+el.dataset.ev, el)));
+  rv.querySelectorAll('[data-rv-close]').forEach((el) => el.addEventListener('click', (ev) => { if (ev.target === el || el.matches('button')) close(); }));
+  addEventListener('keydown', (ev) => { if (ev.key === 'Escape') close(); });
+  q('[data-rv-next]').addEventListener('click', () => {
+    let next = (current + 1) % EVENTS.length;
+    for (let k = 1; k <= EVENTS.length; k++) { const c = (current + k) % EVENTS.length; if (!done.has(c)) { next = c; break; } }
+    rv.classList.add('is-swap');
+    setTimeout(() => { fill(next); requestAnimationFrame(() => requestAnimationFrame(() => rv.classList.remove('is-swap'))); }, reduced ? 0 : 420);
+  });
+  allBtn.addEventListener('click', () => EVENTS.forEach((_, i) => setTimeout(() => mark(i), i * 160)));
+})();
+</script>
+</body>
+</html>
