@@ -12,6 +12,7 @@
 <link rel="preload" as="image" href="../assets/img/terrace-dusk.jpg">
 <link rel="icon" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../assets/base.css">
+<script>addEventListener('pagereveal',(e)=>{if(e.viewTransition)document.documentElement.classList.add('vt')})</script>
 <style>
 :root{
   --ink:#0d1b24; --ink2:#132a37; --paper:#f4ecdf; --sand:#edc494; --teal:#2e546f; --line:rgba(244,236,223,.16); --muted:rgba(244,236,223,.66);
@@ -171,6 +172,38 @@ footer a:hover{color:var(--paper)}
   .hd__actions .btn{display:none}
 }
 @media (prefers-reduced-motion:reduce){.ticker__track{animation:none}}
+
+/* Dining dropdown in the header, and its line in the full-screen menu */
+.hd__drop{position:relative}
+.hd__drop>a{display:inline-flex;align-items:center;gap:8px}
+.hd__drop>a::after{content:"";width:5px;height:5px;margin-top:-3px;border:solid currentColor;border-width:0 1px 1px 0;transform:rotate(45deg);transition:transform .5s var(--ease),margin .5s var(--ease)}
+.hd__drop:hover>a::after,.hd__drop:focus-within>a::after{transform:rotate(225deg);margin-top:3px}
+.hd__sub{position:absolute;left:50%;top:100%;width:310px;margin-left:-155px;padding-top:14px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .35s var(--ease),transform .5s var(--ease),visibility 0s .35s}
+.hd__drop:hover .hd__sub,.hd__drop:focus-within .hd__sub{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.hd__sub div{padding:8px;border-radius:20px;background:#0a151c;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.hd__sub a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 14px;border-radius:13px;opacity:1;font:300 21px/1.1 var(--display);letter-spacing:-.02em;transition:background .3s,color .3s}
+.hd__sub a::before{content:none}
+.hd__sub a small{font:600 10px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hd__sub a:hover,.hd__sub a[aria-current]{background:rgba(244,236,223,.07);color:var(--sand)}
+.hd__sub a[aria-current]{font-style:italic}
+.menu__links a.menu__sub{font-size:clamp(20px,3.2vw,32px);font-style:italic;padding:2px 0 12px}
+.menu__links a.menu__sub::before{content:"";display:inline-block;vertical-align:middle;width:28px;height:1px;margin-right:14px;background:var(--sand)}
+
+/* Page-to-page transitions. The header stays put; a picture that leads to an inner page grows into that page's banner. */
+@view-transition{navigation:auto}
+.hd{view-transition-name:hd}
+.switcher{view-transition-name:switcher}
+.hero__frame{view-transition-name:home-hero}
+.dstage[data-on="Bau Truong"]{view-transition-name:bt-hero}
+.on a[href="whats-on/"] .on__img{view-transition-name:wo-hero}
+::view-transition-group(*){animation-duration:.75s;animation-timing-function:var(--ease-io)}
+::view-transition-old(*),::view-transition-new(*){height:100%;object-fit:cover}
+::view-transition-old(root){animation:vt-out .35s var(--ease-io) both}
+::view-transition-new(root){animation:vt-in .6s var(--ease) both}
+::view-transition-old(hd),::view-transition-new(hd),::view-transition-old(switcher),::view-transition-new(switcher){height:auto;object-fit:none}
+.vt .hero__frame img{opacity:1;transition:none}
+@media (max-width:1000px){.ditem.is-active[href="bau-truong/"] img{view-transition-name:bt-hero}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 </style>
 </head>
 <body>
@@ -178,8 +211,17 @@ footer a:hover{color:var(--paper)}
 <header class="hd" data-header>
   <a class="hd__logo" href="#top" aria-label="Harbord Diggers home"><img src="../assets/logo.svg" alt="Harbord Diggers" width="250" height="98"></a>
   <nav class="hd__nav" aria-label="Primary">
-    <a href="#dining">Dining &amp; Bars</a>
-    <a href="#whats-on">What's On</a>
+    <div class="hd__drop">
+      <a href="#dining" aria-haspopup="true">Dining &amp; Bars</a>
+      <div class="hd__sub"><div>
+        <a href="bau-truong/">Bau Truong <small>Vietnamese</small></a>
+        <a href="https://www.harborddiggers.com.au/dining-bars/teddy-larkin-s-seafood-and-steakhouse">Teddy Larkin's <small>Seafood &amp; steak</small></a>
+        <a href="https://www.harborddiggers.com.au/dining-bars/dd-collective">DD Collective <small>Café</small></a>
+        <a href="https://www.harborddiggers.com.au/dining-bars/ocean-terrace">Ocean Terrace <small>Outdoors</small></a>
+        <a href="https://www.harborddiggers.com.au/dining-bars/main-bar">Main Bar <small>Bar</small></a>
+      </div></div>
+    </div>
+    <a href="whats-on/">What's On</a>
     <a href="#membership">Membership</a>
     <a href="#about">Community</a>
     <a href="#visit">Visit</a>
@@ -194,7 +236,8 @@ footer a:hover{color:var(--paper)}
 <div class="menu" aria-label="Menu">
   <nav class="menu__links">
     <a href="#dining">Dining &amp; Bars</a>
-    <a href="#whats-on">What's On</a>
+    <a class="menu__sub" href="bau-truong/">Bau Truong</a>
+    <a href="whats-on/">What's On</a>
     <a href="#membership">Membership</a>
     <a href="#about">Community</a>
     <a href="#visit">Visit</a>
@@ -254,7 +297,7 @@ footer a:hover{color:var(--paper)}
           <img src="../assets/img/ocean-terrace.jpg" alt="" loading="lazy">
           <p><span>Waterside views of the Northern Beaches — the perfect place to catch up over a drink.</span></p>
         </a>
-        <a class="ditem reveal" style="--d:1" href="https://www.harborddiggers.com.au/dining-bars/bau-truong" data-label="Bau Truong">
+        <a class="ditem reveal" style="--d:1" href="bau-truong/" data-label="Bau Truong">
           <span class="ditem__n">02</span><h3>Bau Truong</h3><span class="ditem__meta">Vietnamese</span>
           <img src="../assets/img/bau-truong-food.jpg" alt="" loading="lazy">
           <p><span>Direct from its humble roots in Cabramatta — authentic modern Vietnamese, from traditional pho to fresh paper rolls.</span></p>
@@ -285,7 +328,7 @@ footer a:hover{color:var(--paper)}
         <p class="eyebrow reveal">What's on</p>
         <h2 data-split>Nights worth <em>staying for.</em></h2>
       </div>
-      <a class="btn reveal" href="https://www.harborddiggers.com.au/whats-on/weekly-activities">Entertainment &amp; events <span>→</span></a>
+      <a class="btn reveal" href="whats-on/">Events &amp; weekly activities <span>→</span></a>
     </div>
     <div class="on">
       <a href="https://www.harborddiggers.com.au/weekly-activities/live-music" class="wipe-host">
@@ -296,7 +339,7 @@ footer a:hover{color:var(--paper)}
         <div class="on__img wipe" style="--d:1"><img src="../assets/img/major-fun.jpg" alt="Children playing at Major Fun" loading="lazy"></div>
         <div class="on__cap reveal"><div><small>Kids</small><h3>Major Fun</h3></div><span class="go">→</span></div>
       </a>
-      <a href="https://www.harborddiggers.com.au/whats-on/weekly-activities">
+      <a href="whats-on/">
         <div class="on__img wipe" style="--d:2"><img src="../assets/img/cocktails.jpg" alt="Cocktails on the bar" loading="lazy"></div>
         <div class="on__cap reveal"><div><small>Entertainment</small><h3>Weekly events</h3></div><span class="go">→</span></div>
       </a>
@@ -372,7 +415,7 @@ footer a:hover{color:var(--paper)}
     imgs[i].classList.add('is-active');
     items[current].classList.remove('is-active');
     items[i].classList.add('is-active');
-    label.textContent = items[i].dataset.label;
+    label.textContent = stage.dataset.on = items[i].dataset.label;
     current = i;
   };
   const touch = matchMedia('(hover: none)').matches;

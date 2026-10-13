@@ -12,6 +12,7 @@
 <link rel="preload" as="image" href="../assets/img/terrace-aerial.jpg">
 <link rel="icon" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../assets/base.css">
+<script>addEventListener('pagereveal',(e)=>{if(e.viewTransition)document.documentElement.classList.add('vt')})</script>
 <style>
 :root{
   --ink:#260d3c; --cream:#f9f4ec; --sand:#f3ebe0; --line:rgba(38,13,60,.14); --muted:rgba(38,13,60,.66); --gold:#c9963f;
@@ -44,7 +45,7 @@ a:hover>.arrow,.btn:hover .arrow{transform:translateX(5px)}
 .hd.is-scrolled .hd__bar{max-width:1080px;height:54px;background:rgba(249,244,236,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:var(--line);box-shadow:0 12px 40px -18px rgba(38,13,60,.35)}
 .hd__logo img{height:40px;width:auto;transition:height .6s var(--ease)}
 .hd.is-scrolled .hd__logo img{height:34px}
-.hd__nav{display:flex;gap:clamp(16px,2.2vw,34px);font:500 13px/1 var(--body)}
+.hd__nav{display:flex;gap:clamp(14px,2vw,30px);font:500 13px/1 var(--body);white-space:nowrap}
 .hd__nav a{position:relative;padding:8px 0}
 .hd__nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
 .hd__nav a:hover::after{transform:scaleX(1);transform-origin:left}
@@ -189,6 +190,18 @@ footer{padding:0 var(--pad) 96px}
   .stat,.stat+.stat{padding:22px 0;border-left:0;border-top:1px solid rgba(249,244,236,.2)}
   .visit dl div{grid-template-columns:1fr}
 }
+
+/* Page-to-page transitions with the Shoreline inner pages (see shoreline.css) */
+@view-transition{navigation:auto}
+.hd{view-transition-name:hd}
+.switcher{view-transition-name:switcher}
+.hero__frame{view-transition-name:home-hero}
+.card:first-child .card__img{view-transition-name:bt-hero}
+::view-transition-group(*){animation-duration:.7s;animation-timing-function:var(--ease-io)}
+::view-transition-old(*),::view-transition-new(*){height:100%;object-fit:cover}
+::view-transition-old(hd),::view-transition-new(hd),::view-transition-old(switcher),::view-transition-new(switcher){height:auto;object-fit:none}
+.vt .hero__frame{clip-path:inset(0 round var(--r));transition:none}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 </style>
 </head>
 <body>
@@ -197,8 +210,9 @@ footer{padding:0 var(--pad) 96px}
   <div class="hd__bar">
     <a class="hd__logo" href="#top" aria-label="Harbord Diggers home"><img src="../assets/logo-purple.svg" alt="Harbord Diggers" width="250" height="98"></a>
     <nav class="hd__nav" aria-label="Primary">
-      <a href="#whats-on">What's On</a>
+      <a href="whats-on/">What's On</a>
       <a href="#dining">Dining &amp; Bars</a>
+      <a href="bau-truong/">Bau Truong</a>
       <a href="#membership">Membership</a>
       <a href="#about">Community</a>
       <a href="#visit">Visit</a>
@@ -213,8 +227,9 @@ footer{padding:0 var(--pad) 96px}
 
 <div class="menu" aria-label="Menu">
   <nav class="menu__links">
-    <a href="#whats-on">What's On</a>
+    <a href="whats-on/">What's On</a>
     <a href="#dining">Dining &amp; Bars</a>
+    <a href="bau-truong/">Bau Truong</a>
     <a href="#membership">Membership</a>
     <a href="#about">Community</a>
     <a href="#visit">Visit</a>
@@ -250,7 +265,7 @@ footer{padding:0 var(--pad) 96px}
   <nav class="quick" aria-label="Quick links">
     <a class="reveal" style="--d:0" href="https://aaw.rxcx.au/c6XS"><span>Become a member<small>Eight venues, one membership</small></span><span class="arrow">→</span></a>
     <a class="reveal" style="--d:1" href="#visit"><span>Visit us<small>88 Evans St, Freshwater</small></span><span class="arrow">→</span></a>
-    <a class="reveal" style="--d:2" href="#whats-on"><span>What's on<small>Live music, events &amp; kids</small></span><span class="arrow">→</span></a>
+    <a class="reveal" style="--d:2" href="whats-on/"><span>What's on<small>Live music, events &amp; kids</small></span><span class="arrow">→</span></a>
     <a class="reveal" style="--d:3" href="tel:0291054888"><span>Contact us<small>(02) 9105 4888</small></span><span class="arrow">→</span></a>
   </nav>
 
@@ -284,7 +299,7 @@ footer{padding:0 var(--pad) 96px}
       </div>
     </div>
     <div class="rail" data-rail="dining">
-      <a class="card reveal" style="--d:0" href="https://www.harborddiggers.com.au/dining-bars/bau-truong">
+      <a class="card reveal" style="--d:0" href="bau-truong/">
         <div class="card__img"><img src="../assets/img/bau-truong-food.jpg" alt="Vietnamese noodle bowls at Bau Truong" loading="lazy"><span class="card__tag">Vietnamese</span></div>
         <h3>Bau Truong <span class="arrow">→</span></h3>
         <p>Direct from its humble roots in Cabramatta — authentic modern Vietnamese, from traditional pho to fresh paper rolls.</p>
@@ -318,7 +333,7 @@ footer{padding:0 var(--pad) 96px}
         <p class="eyebrow reveal">What's on</p>
         <h2 data-split>Live music, events <em>&amp; a little fun.</em></h2>
       </div>
-      <a class="btn reveal" href="https://www.harborddiggers.com.au/whats-on/weekly-activities">All events <span class="arrow">→</span></a>
+      <a class="btn reveal" href="whats-on/">All events &amp; weekly activities <span class="arrow">→</span></a>
     </div>
     <div class="on">
       <a class="tile tile--tall wipe" href="https://www.harborddiggers.com.au/weekly-activities/live-music">

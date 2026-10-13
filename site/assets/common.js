@@ -171,13 +171,17 @@
   });
 
   // Concept switcher
-  const current = (location.pathname.match(/\/v(\d+)\//) || [])[1];
+  const here = location.pathname.match(/\/v(\d+)\//);
+  const current = here && here[1];
   if (current) {
+    const root = location.pathname.slice(0, here.index + 1);
     const nav = document.createElement('nav');
     nav.className = 'switcher';
     nav.setAttribute('aria-label', 'Concepts');
     const group = +current <= 3 ? [1, 2, 3] : +current <= 6 ? [4, 5, 6] : [7, 8, 9, 10];
-    nav.innerHTML = `<a href="../">All concepts</a>` + group.map((n) => `<a href="../v${n}/"${String(n) === current ? ' aria-current="page"' : ''}>${n}</a>`).join('');
+    // Concepts 1–3 share inner pages, so switching keeps you on the same page
+    const sub = +current <= 3 ? (location.pathname.slice(here.index + here[0].length).match(/^(bau-truong|whats-on)\//) || [''])[0] : '';
+    nav.innerHTML = `<a href="${root}">All concepts</a>` + group.map((n) => `<a href="${root}v${n}/${sub}"${String(n) === current ? ' aria-current="page"' : ''}>${n}</a>`).join('');
     document.body.append(nav);
   }
 
